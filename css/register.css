@@ -1,0 +1,77 @@
+body{
+    background-color:#8AA7D9;
+  }
+form{
+        width: 500px;			
+        margin: 0 0 0 50px;
+    }
+@font-face{
+    font-family:sHeiTi;
+    src:url("../font/SourceHanSansCN-Regular.otf");
+}
+#user_reg{
+    user-select: none;        
+    text-align: center;
+    height: 380px;
+    width: 500px;
+    background-color: white;
+    float: middle;
+    margin: 130px auto 100px auto;
+    border-radius: 10px;
+    color: #666666;
+    padding: 8px;
+    font-family: "sHeiTi",sans-serif;
+  }
+  #title_1{
+    font-size: 30px;
+     margin: 0 0 5px 0;
+  }
+  #title_2{
+    font-size: 14px;
+    margin: 0 0 5px 0;
+  }
+  #check{
+    float:left;
+    margin: 13px 0 0 15px;       
+  }
+  #text1{
+    font-size: 11px;
+    margin: 11px 0 0 2px;
+    float:left;
+  }
+  #submit_form{
+    float:left;
+    margin: 6px 0 0 0;
+    background-color:#4a86e8;
+    border-radius: 10px;
+    color:white;
+    padding: 2px;
+    height: 25px;
+    width: 45px;
+    border:0;
+  }
+  #submit_form:hover{
+    cursor: pointer;
+  }
+  .agree-tip{    
+    display: none;
+    position: absolute;
+    width: 226px;
+    height: 50px;
+    line-height: 50px;
+    background: rgba(0,0,0,.8);
+    color: #fff;
+    top: 350px;
+    left: 650px;
+    text-align: center;
+    font-size: 14px;
+    z-index: 1000;
+  }
+  .attention{
+    color:red;
+    font-size: 10px;
+    float:left;
+  }
+  input{
+      outline:none;
+  }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="./lib/vue2.js"></script>
+    <title>Log in</title>
+    <link rel="stylesheet" href="./css/effects.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <div class="maincontainer">
+        <div class="leftcontainer">
+            <div class="decoratetxt">
+                <div class="icon-home">
+                    <i class="fas fa-home" style="font-size:80px;"></i>
+                </div>
+                <div class="protitle">
+                    <p style="font-size:30px">图书管理系统</p>
+                    <p style="font-size:18px; margin-top:3px;">Library management system</p>
+                </div>
+                <div class="motto">
+                    莫等闲，白了少年头，空悲切！<br>
+                    业精于勤，荒于嬉；行成于思，毁于随。<br>
+                    Reading is a journey through the mind.<br>
+                    The limit of my world is the limit of my words.<br>
+                </div>
+            </div>
+        </div>
+        <div class="rightcontainer">
+            <div class="logincontainer" id="logincontainer">
+                <p style="font-size:30px">登录</p>
+                <p style="font-size:18px; ">LOGIN</p>
+                <p style="font-size:12px; height:13px; color:red; margin-top:8px; margin-left:6px;">{{tipMessage}}</p>
+                <form>
+                    <div class="inputbar">
+                        <div class="smallicon">
+                            <i class="fas fa-user" style="font-size:24px;"></i>
+                        </div>
+                        <input class="ipt" type="text" v-model="username" placeholder="input username">
+                    </div>
+                    <div class="inputbar">
+                        <div class="smallicon">
+                            <i class="fas fa-lock" style="font-size:24px;"></i>
+                        </div>
+                        <input class="ipt" id="password"  type="password" v-model="password" placeholder="input password">
+                        <div class="smallicon" style="float:right; margin-right:9px;">
+                            <i class="fas fa-eye-slash" style="font-size:24px;"></i>
+                        </div>
+                    </div>
+                    <input class="btn01" type="button" @click="post" value="LOG&emsp;IN">
+                </form>
+                <a class="login-link" href="./register.html" target="blank" style="margin-left:30px;">register</a>
+                <a class="login-link" href="./change_password.html" target="blank" style="float:right; margin-right:30px;">retrieve password</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./javascript/effects.js"></script>
+<script src="./javascript/login.js"></script>
+</html>

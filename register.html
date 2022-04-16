@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+	<link rel="stylesheet" href="./css/effects.css">
+    <link rel="stylesheet" href="./css/register.css">
+	<script type="text/javascript" src="./lib/vue2.js"></script>
+  </head>
+  <body>
+  	<div id="user_reg"><p id="title_1">Register:</p>
+      <p id="title_2">register</p>
+	<form action="#" method="post" name="form" >
+		<table>
+			<tr>
+				<td><p><font color ="red">*</font>User Name</p></td>
+				<td><input type="text" id="username" name="username" autocomplete="off" v-model="username"/></td>
+				<td><p class="attention">at least 3 letters</p></td>
+			</tr>
+			<tr>
+				<td> <p><font color ="red">*</font>Password：</p></td>
+				<td><input type="password" id="password" name="password" v-model="password"/></td>
+				<td><p class="attention">at least 9 letters</p></td>
+			</tr>
+			<tr>
+				<td><p><font color ="red">*</font>Verify Password：</p></td>
+				<td><input type="password" id="password2" name="password2" v-model="password_guarantee"/></td>
+        <td><p class="attention"> input password again</p></td>
+				
+			</tr>
+      <tr>
+				<td><p><font color ="red">*</font>Email：</p></td>
+				<td><input type="email" id="email" name="email" autocomplete="off" v-model="email"/></td>
+				<td><p class="attention">input your Email</p></td>
+			</tr>      
+			<tr>
+				<td></td>
+				<td >
+          <input type="button" id="submit_form" value="Submit" @click="submit()"/>		
+          <input type="checkbox" name="agreen" id="check" v-model="agree_term">
+          <div class="sim-checkbox not-checked"></div>
+          <p id="text1">I agree terms</p>
+          <div class="agree-tip">
+              <i></i>请先阅读并同意相关协议~
+          </div>
+				</td>
+        <td>             
+        </td>
+        <td>            
+        </td>
+			</tr>
+		</table>
+	</form>
+ </div>
+</body>
+<script src="./javascript/effects.js"></script>
+<script src="./javascript/register.js"></script>
+</html>

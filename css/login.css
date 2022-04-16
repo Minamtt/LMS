@@ -1,0 +1,125 @@
+body{
+    background-color: #8AA7D9;
+}
+p{
+    margin: 0px;
+}
+.maincontainer{
+    margin-top:157px;
+    margin-left:auto;
+    margin-right:auto;
+    width:875px;
+    height:437px;
+    border: #92afcd solid 2px;
+    background-color: #FFFFFF;
+    color: black;
+    border-radius: 14px;
+    overflow: hidden;
+}
+@font-face{
+    font-family:sHeiTi;
+    src:url("../font/SourceHanSansCN-Regular.otf");
+}
+.leftcontainer{
+    float:left;
+    width: 436px;
+    height: 100%;
+    background-color: #59A4DF;
+    border-right: #BAC1CB solid 1px;
+    user-select: none;
+    font-family: "sHeiTi",sans-serif;
+}
+.rightcontainer{
+    width: calc(100% - 438px);
+    height: 100%;
+    background-color: white;
+    float:left;
+    font-family: "sHeiTi",sans-serif ;
+}
+.decoratetxt{
+    width:423px;
+    margin-top:39px;
+    margin-left: 31px;
+    background-color: yellow;
+}
+.icon-home{
+    width:94px;
+    height:94px;
+    float:left;
+    /* background-color: green; */
+}
+.protitle{
+    width:265px;
+    height:94px;
+    /* background-color: blue; */
+    float:left;
+}
+.motto{
+    float:left;
+    width:390px;
+    font-size: 17px;
+    line-height: 300%;
+    margin-top: 16px;
+}
+.logincontainer{
+    margin-top:39px;
+    margin-left:62px;
+    width:75%;
+    height: 398px;
+    user-select: none;
+    /* background-color: green; */
+}
+.inputbar{
+    margin-left:6px;
+    margin-top:10px;
+    margin-bottom:29px;
+    width:295px;
+    height:42px;
+    border:#CECECE solid 1px;
+    border-radius: 16px;
+}
+.smallicon{
+    /* background-color: aqua; */
+    margin-top:9px;
+    margin-left: 9px;
+    height:24px;
+    width:24px;
+    float:left;
+}
+.ipt{
+    outline: none;
+    margin-left: 5px;
+    font-size:17px;
+    letter-spacing: 2px;
+    border: 0px;
+    height:30px;
+    width: 65%;
+    margin-top:6px;
+    display:block;
+    float:left;
+}
+.btn01{
+    outline: none;
+    border: #D7DBDC solid 1px;
+    font-size: 24px;
+    color:white;
+    border-radius:20px;
+    margin-top: 45px;
+    margin-bottom: 25px;
+    margin-left:6px;
+    width:295px;
+    height:57px;
+    background-color: #48BEEA;
+    display: block;
+}
+.btn01:hover{
+    cursor: pointer;
+}
+.btn01:active
+{
+    background-color: #88cee7;
+}
+.login-link{
+    color:#58B8D0;
+    text-decoration: none;
+}

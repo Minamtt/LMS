@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./css/main_head.css"> 
+    <link rel="stylesheet" href="./css/main_content.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <script src="./lib/vue2.js"></script>
+    <script src="./javascript/public.js"></script>
+</head>
+<body style="background-color:#EBEBEB;">
+    <header id="header">
+        <div class="h_left_text">
+            <div>
+                <i class="fas fa-home h_home"></i>
+                <span class="h_title">XIDIAN BOOKS</span>
+            </div>
+        </div>
+        <nav class="h_middle">
+            <ul class="h_navitem">
+                <li><a style="color:red;" href="javascript:;">Home</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="javascript:;">Logs</a></li>
+            </ul>
+        </nav>
+        <div class="h_search">
+            <input type="text" class="h_searchbar" placeholder="javascript" v-model="search_for" @keydown.enter="search" />
+            <div class="h_searchbutton" @click="search">
+                <i class="fas fa-search" ></i>
+            </div>
+        </div>
+        <div class="h_user">
+            <div class="h_slipwindow">
+                <p class="h_w_username">{{username}}</p>
+                <p class="h_w_userinfo">ID:{{id}}</p>
+                <p class="h_w_userinfo">{{email}}</p>
+                <p class="h_w_userinfo">Student</p>
+                <button class="h_w_exitbtn" onclick="location.href='./change_password.html'">Change Password</button>
+                <button class="h_w_exitbtn" @click="logout">Log out</button>
+            </div>
+            <i class="fas fa-user"></i>
+        </div>
+    </header>
+    <div id="main_container">
+        <section id="content">
+            <aside class="leftside">
+                <div class="category_list_container">
+                    <ul class="category_list" id="category_list">
+                        <li><span class="fas fa-list"></span> Education<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
+                        <li><span class="fas fa-list"></span> Novels<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
+                        <li><span class="fas fa-list"></span> Sociology<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
+                        <li><span class="fas fa-list"></span> Economics<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
+                        <li><span class="fas fa-list"></span> Art<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
+                        <div class="category_window" style="top:0px;">
+                            <a class="link" href="javascript:;">Children</a>
+                            <a class="link" href="javascript:;">Family</a>
+                            <a class="link" href="javascript:;">Primary School</a>
+                            <a class="link" href="javascript:;">Middle School</a>
+                            <a class="link" href="javascript:;">High School</a>
+                        </div>
+                        <div class="category_window" style="top:92px;">
+                            <a class="link" href="javascript:;">Romantic</a>
+                            <a class="link" href="javascript:;">War</a>
+                            <a class="link" href="javascript:;">Alien</a>
+                        </div>
+                        <div class="category_window" style="top:184px;">
+                            <a class="link" href="javascript:;">Psycology</a>
+                        </div>
+                        <div class="category_window" style="top:276px;">
+
+                        </div>
+                        <div class="category_window" style="top:368px;">
+                            <a class="link" href="javascript:;">Music</a>
+                            <a class="link" href="javascript:;">Photograph</a>
+                            <a class="link" href="javascript:;">Movie</a>
+                        </div>
+                    </ul>
+                </div>
+            </aside>
+            <div class="pic">
+                <div class="carousel">
+                    <div class="dots" id="dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <img id="carousel_pic" src="./img/4.jpg" alt="示例图书" width="618" height="604">
+                </div>
+            </div>
+            <aside class="rightside">
+                <div class="news_container">
+                    <p style="font-size:30px;">Announcement</p>
+                    <ul class="news_list">
+                        <li>News...</li>
+                        <li>Hot...</li>
+                        <li>ps3</li>
+                    </ul>
+                </div>
+                <div class="hot_container" id="hot_container">
+                    <p style="font-size:30px;"><i class="fas fa-fire"></i>&emsp;Hot</p>
+                    <ol class="hot_list">
+                        <li>
+                            <img :src="hotest.img_url" style="float:right; margin-right:15px;" width="105" height="114"/>
+                            <a :href="hotest.link">{{hotest.bookname}}</a><p style="font-size:14px;">{{hotest.author}}</p>
+                        </li>
+                        <hr>
+                        <template v-for="(i,index) in hot_books">
+                            <li><a :href="hot_book_links[index]">{{i.bookname}}</a></li>
+                            <hr>
+                        </template>
+                    </ol>
+                </div>
+            </aside>
+        </section>
+        <section id="recommend">
+            <h2 style="font-size:35px">Published Books</h2>
+            <p style="font-size:14px;" class="recommend_types">
+                <a href="javascript:;">Novel</a>
+                <a href="javascript:;">Self-help literature</a>
+                <a href="javascript:;">History</a>
+                <a href="javascript:;">Economics & Management</a>
+                <a href="javascript:;">More</a>
+            </p>
+            <div class="pics_container">
+                
+                <div class="pic_big">
+                    <div class="recommend_tag">
+                        recommend
+                    </div>
+                    <a :href="recommend_links[0]">
+                        <img :src="recommend_books[0].img_url" style="float:left" width="544px" height="565px">
+                        <div class="pic_bkinfo">
+                            <p class="descri_title">
+                                {{recommend_books[0].bookname}}
+                            </p>
+                            <p class="descri_text">
+                                {{recommend_books[0].author}}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="pic_small">
+                    <a :href="recommend_links[1]">
+                        <img :src="recommend_books[1].img_url">
+                        <div class="pic_bkinfo">
+                            <p class="descri_title">
+                                {{recommend_books[1].bookname}}
+                            </p>
+                            <p class="descri_text">
+                                {{recommend_books[1].author}}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="pic_small">
+                    <a :href="recommend_links[2]">
+                        <img :src="recommend_books[2].img_url">
+                        <div class="pic_bkinfo">
+                            <p class="descri_title">
+                                {{recommend_books[2].bookname}}
+                            </p>
+                            <p class="descri_text">
+                                {{recommend_books[2].author}}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="pic_small">
+                    <a :href="recommend_links[3]">
+                        <img :src="recommend_books[3].img_url">
+                        <div class="pic_bkinfo">
+                            <p class="descri_title">
+                                {{recommend_books[3].bookname}}
+                            </p>
+                            <p class="descri_text">
+                                {{recommend_books[3].author}}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="pic_small">
+                    <a :href="recommend_links[4]"><img :src="recommend_books[4].img_url">
+                        <div class="pic_bkinfo">
+                            <p class="descri_title">
+                                {{recommend_books[4].bookname}}
+                            </p>
+                            <p class="descri_text">
+                                {{recommend_books[4].author}}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+        </section>
+    </div>
+    <footer>
+        <h2>Library Managment System</h2><br/>
+        <h2>2022.04</h2>
+    </footer>
+</body>
+<script src="./javascript/mainpage.js"></script>
+<script src="./javascript/header.js"></script>
+</html>
