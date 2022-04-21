@@ -1,0 +1,85 @@
+@font-face {
+    font-family: "sHeiTi";
+    src: url("../font/SourceHanSansCN-Regular.otf");
+}
+.main_container{
+    width:903px;
+    height: 685px;
+    margin:103px auto 50px auto;
+    font-family: "sHeiTi", sans-serif;
+    background-color: #ECF1F2;
+    border: 1px solid #CED0D0;
+}
+.table_container{
+    height:calc(611px - 94px);
+    width: calc(100% - 146px);
+    padding:54px 73px 40px 73px;
+    background-color: #ECF1F2;
+}
+.table_info{
+    height: 53px;
+    padding:0px 10px;
+    background-color: #F2F2F2;
+    border-bottom: 1px solid #CED0D0;
+}
+.infoms{
+    float: left;
+    width:230px;
+    height: 53px;
+    line-height: 53px;
+    font-size: 16px !important;
+    text-align: left !important;
+    margin: 0px;
+}
+.table_container p{
+    height: 30px;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    margin: 0px;
+    margin-bottom: 25px;
+}
+.table_container button{
+    color:white;
+    border: none;
+    background-color: #3686ff;
+    width:100px;
+    height: 46px;
+    margin:20px auto;
+    border-radius: 6px;
+    display: block;
+}
+.table_container button:hover{
+    cursor:pointer;
+}
+.table_div{
+    height: 360px;
+    overflow: auto;
+    border: 1px solid #CED0D0;
+    background-color: white;
+}
+table {
+    width: 100%;
+    background-color: #F2F2F2;
+    border-spacing: 0;
+}
+table th{
+    text-align: left;
+}
+table tr{
+    padding-left: 10px;
+    font-size: 10px;
+    height: 44px;
+}
+table tr:nth-child(2n){
+    background-color: #FFFFFF;
+}
+.tip{
+    width: 903px;
+    height: 74px;
+    border-top: 1px solid #CED0D0;
+    color: red;
+    font-size: 26px;
+    line-height: 74px;
+    text-align: center;
+}

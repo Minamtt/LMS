@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main_head.css"> 
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/bookdetail.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <script type="text/javascript" src="./lib/vue2.js"></script>
+    <script src="./javascript/public.js"></script>
+    <title>Book Detail</title>
+</head>
+<body style="background-color:#EBEBEB;">
+    <header id="header">
+        <mainhead class="header"></mainhead>
+    </header>
+    <div class="main_container" id="main_container">
+        <section class="book_container">
+            <img class="cover_img" :src="book.img_src"/>
+            <div class="right_bar">
+                <div class="book_name">
+                    <p style="font-size:26px">{{book.bookname}}</p>
+                    <p>
+                        <div style="width:260px;">Author:{{book.author}}</div>
+                        <div>Publisher:{{book.publisher}}</div>
+                    </p>
+                </div>
+                <div class="book_func">
+                    <div class="book_price_container">
+                        <div style="width:140px;">Price:{{book.price.toFixed(2)}}￥</div>
+                        <div style="width:290px;">Total number of books: {{book.total}}</div>
+                        <div>Remain: {{book.remain}}</div>
+                    </div>
+                    <div class="btns">
+                        <button :style="button_style">{{button_message}}</button>
+                    </div>
+                    <img class="bar_code" src="" alt="">
+                </div>
+                <div class="book_desc">
+                    Categories: {{book.cate0}}/{{book.cate1}}<br>
+                    Description: {{book.description}}
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <h2>Library Managment System</h2><br/>
+        <h2>2022.04</h2>
+    </footer>
+</body>
+<script src="./javascript/header.js"></script>
+<script src="./javascript/bookdetail.js"></script>
+</html>

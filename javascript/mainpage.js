@@ -70,28 +70,28 @@ var hot_books = new Vue({
         hot_books:[
             {
                 bookname:"Effective C++",
-                bookid:1
+                ISBN:1
             },
             {
                 bookname:"Effective C#",
-                bookid:2
+                ISBN:2
             },
             {
                 bookname:"Effective Java",
-                bookid:3
+                ISBN:3
             },
             {
                 bookname:"Effective Python",
-                bookid:4
+                ISBN:4
             }
         ]
     },
     computed:{
         hot_book_links(){
             let links = [];
-            let search_url = "./categories.html";
+            let search_url = "./bookdetail.html";
             for (let i of this.hot_books){
-                links.push(`${search_url}?bookid=${i.bookid}`);
+                links.push(`${search_url}?isbn=${i.ISBN}`);
             }
             return links;
         }
@@ -104,32 +104,32 @@ var recommends = new Vue({
             {
                 img_url:"img/e.jpg",
                 bookname:"钢铁是怎样炼成的",
-                bookid:0,
+                ISBN:0,
                 author:"奥斯特洛夫斯基",
             },
             {
                 img_url:"img/e2.jpg",
                 bookname:"Thinking in Java",
-                bookid:1,
+                ISBN:1,
                 author:"Bruce Eckel",
             },
             {
                 img_url:"img/e3.jpg",
                 bookname:"Hong Lou Meng",
-                bookid:2,
+                ISBN:2,
                 author:"Xueqin Cao",
             },
             {
                 img_url:"img/e4.jpg",
                 bookname:"宏观经济学",
                 author:"Andrul B Abol",
-                bookid:3,
+                ISBN:3,
             },
             {
                 img_url:"img/e.jpg",
                 bookname:"钢铁是怎样炼成的",
                 author:"奥斯特洛夫斯基",
-                bookid:4,
+                ISBN:4,
             },
         ]
     },
@@ -139,9 +139,9 @@ var recommends = new Vue({
     computed:{
         recommend_links(){
             let links = [];
-            let search_url = "./categories.html";
+            let search_url = "./bookdetail.html";
             for (let i of this.recommend_books){
-                links.push(`${search_url}?bookid=${i.bookid}`);
+                links.push(`${search_url}?isbn=${i.ISBN}`);
             }
             return links;
         }

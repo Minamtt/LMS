@@ -14,36 +14,7 @@
 </head>
 <body style="background-color:#EBEBEB;">
     <header id="header">
-        <div class="h_left_text">
-            <div>
-                <i class="fas fa-home h_home"></i>
-                <span class="h_title">XIDIAN BOOKS</span>
-            </div>
-        </div>
-        <nav class="h_middle">
-            <ul class="h_navitem">
-                <li><a style="color:red;" href="javascript:;">Home</a></li>
-                <li><a href="categories.html">Categories</a></li>
-                <li><a href="javascript:;">Logs</a></li>
-            </ul>
-        </nav>
-        <div class="h_search">
-            <input type="text" class="h_searchbar" placeholder="javascript" v-model="search_for" @keydown.enter="search" />
-            <div class="h_searchbutton" @click="search">
-                <i class="fas fa-search" ></i>
-            </div>
-        </div>
-        <div class="h_user">
-            <div class="h_slipwindow">
-                <p class="h_w_username">{{username}}</p>
-                <p class="h_w_userinfo">ID:{{id}}</p>
-                <p class="h_w_userinfo">{{email}}</p>
-                <p class="h_w_userinfo">Student</p>
-                <button class="h_w_exitbtn" onclick="location.href='./change_password.html'">Change Password</button>
-                <button class="h_w_exitbtn" @click="logout">Log out</button>
-            </div>
-            <i class="fas fa-user"></i>
-        </div>
+        <mainhead class="header"></mainhead>
     </header>
     <div id="main_container">
         <section id="content">
@@ -89,15 +60,15 @@
                         <div class="dot"></div>
                         <div class="dot"></div>
                     </div>
-                    <img id="carousel_pic" src="./img/4.jpg" alt="示例图书" width="618" height="604">
+                    <img id="carousel_pic" src="" alt="示例图书" width="618" height="604">
                 </div>
             </div>
             <aside class="rightside">
                 <div class="news_container">
                     <p style="font-size:30px;">Announcement</p>
                     <ul class="news_list">
-                        <li>News...</li>
-                        <li>Hot...</li>
+                        <li>Visitors today:</li>
+                        <li>Borrowed today:</li>
                         <li>ps3</li>
                     </ul>
                 </div>
