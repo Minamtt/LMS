@@ -53,6 +53,9 @@ a{
     float: left;
     margin-right: 10px;
 }
+.cate_list li:hover{
+    cursor: pointer;
+}
 .cate_list .selected{
     background-color: #BAB5BD;
     color: white;

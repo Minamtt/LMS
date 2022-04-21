@@ -36,9 +36,10 @@
                     <div class="btns">
                         <button :style="button_style">{{button_message}}</button>
                     </div>
-                    <img class="bar_code" src="" alt="">
+                    <img class="bar_code" src="./img/barcode.png" alt="">
                 </div>
                 <div class="book_desc">
+                    ISBN: {{book.isbn}}<br>
                     Categories: {{book.cate0}}/{{book.cate1}}<br>
                     Description: {{book.description}}
                 </div>
