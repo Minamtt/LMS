@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main_head.css">
+    <link rel="stylesheet" href="./css/manage_pages.css">
+    <link rel="stylesheet" href="./css/user_manage.css">
+    <link rel="stylesheet" href="./lib/index.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <script type="text/javascript" src="./lib/vue2.js"></script>
+    <script src="./javascript/public.js"></script>
+    <script src="./lib/index.js"></script>
+    <title>User Management</title>
+</head>
+<body style="background-color: #F4E080;">
+    <header id="header">
+        <mainhead class="header"></mainhead>
+    </header>
+    <div id="main_container">
+        <el-dialog title="Barcode" :visible.sync="dialogTableVisible">
+            <img :src="barcode" alt="" width="620" height="140">
+        </el-dialog>
+        <h1>User Management</h1>
+        <div class="functions">
+            <div class="search-bar">
+                <input type="text" placeholder="enter uID" v-model="search_for" @keydown.enter="searchUser()"></input>
+                <div class="search_btn" @click="searchUser()" >search</div>
+            </div> 
+            <button class="add_book_btn" onclick="location.href = './register.html'">add new user</button>
+        </div>
+        <div class="table_container">
+            <table cellspacing="2">
+                <thead>
+                    <th>uID</th>
+                    <th>Email</th>
+                    <th>Type</th>
+                    <th>operations</th>
+                </thead>
+                <tbody>
+                    <tr v-for="(i,index) in list">
+                        <td style="width:180px">{{i.uid}}</td>
+                        <td style="width:180px">{{i.email}}</td>
+                        <td style="width:180px" v-if="i.type === 0">Student</td>
+                        <td style="width:180px" v-if="i.type === 1">Teacher</td>
+                        <td style="width:180px" v-if="i.type === 2">Administrator</td>
+                        <td >
+                            <button class="update_btn" @click="viewBarcode(index)">Barcode</button>
+                            <button class="update_btn" @click="updateInfo(index)">update userinfo</button>
+                            <button class="update_btn" @click="viewOrder(index)">order records</button>
+                            <button class="update_btn" @click="viewUser(index)">borrowing records</button>
+                            <button class="delete_btn" @click="deleteUser(index)">Delete user</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pages">
+            <el-pagination
+                :current-page.sync="currentPage"
+                @current-change="current_change"
+                background
+                layout="prev, pager, next"
+                :total="pages_total*10" style="margin:0px auto;">
+            </el-pagination>
+        </div>
+    </div>
+</body>
+<script src="./javascript/header_adm.js"></script>
+<script src="./javascript/usermanage.js"></script>
+</html>

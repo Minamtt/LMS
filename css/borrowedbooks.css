@@ -15,6 +15,7 @@
     width: calc(100% - 146px);
     padding:54px 73px 40px 73px;
     background-color: #ECF1F2;
+    position: relative;
 }
 .table_info{
     height: 53px;
@@ -39,7 +40,7 @@
     margin: 0px;
     margin-bottom: 25px;
 }
-.table_container button{
+.table_container > button{
     color:white;
     border: none;
     background-color: #3686ff;
@@ -70,6 +71,16 @@ table tr{
     padding-left: 10px;
     font-size: 10px;
     height: 44px;
+}
+.continue{
+    border: none;
+    color:white;
+    background-color: green;
+    height: 26px;
+    border-radius: 7px;
+}
+.continue:hover{
+    background-color:rgb(45, 177, 45);
 }
 table tr:nth-child(2n){
     background-color: #FFFFFF;

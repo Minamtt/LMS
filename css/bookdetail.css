@@ -72,7 +72,7 @@
     margin-right: 60px;
 }
 .book_desc{
-    padding:20px 37px;
+    padding:20px 37px 0px 37px;
     width: calc(100% - 74px);
     height: 146px;
     font-size: 14px;

@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/bookdetail.css">
     <link rel="stylesheet" href="./fa/css/all.css">
+    <link rel="stylesheet" href="./lib/index.css">
     <script type="text/javascript" src="./lib/vue2.js"></script>
+    <script src="./lib/index.js"></script>
     <script src="./javascript/public.js"></script>
     <title>Book Detail</title>
 </head>
@@ -22,26 +24,32 @@
             <div class="right_bar">
                 <div class="book_name">
                     <p style="font-size:26px">{{book.bookname}}</p>
-                    <p>
-                        <div style="width:260px;">Author:{{book.author}}</div>
+                        <div style="width:310px; height: 24px; overflow: hidden; text-overflow: ellipsis;">Author:{{book.author}}</div>
                         <div>Publisher:{{book.publisher}}</div>
-                    </p>
                 </div>
                 <div class="book_func">
                     <div class="book_price_container">
-                        <div style="width:140px;">Price:{{book.price.toFixed(2)}}￥</div>
+                        <div style="width:140px;">Price:{{Number(book.price).toFixed(2)}}￥</div>
                         <div style="width:290px;">Total number of books: {{book.total}}</div>
-                        <div>Remain: {{book.remain}}</div>
                     </div>
                     <div class="btns">
-                        <button :style="button_style">{{button_message}}</button>
+                        <el-select style="margin-top: 10px; margin-right: 20px;" v-model="selected" placeholder="please select bookId">
+                            <el-option
+                              v-for="item in selection"
+                              :key="item.value"
+                              :label="item.label"
+                              :value="item.value">
+                            </el-option>
+                        </el-select>
+                        <button :style="button_style" @click="subscribe()">Subscribe</button>
+                        <button :style="button_style" @click="borrowBook()">Borrow</button>
                     </div>
-                    <img class="bar_code" src="./img/barcode.png" alt="">
                 </div>
                 <div class="book_desc">
                     ISBN: {{book.isbn}}<br>
                     Categories: {{book.cate0}}/{{book.cate1}}<br>
-                    Description: {{book.description}}
+                    Location:{{book.location}}<br>
+                    Description: {{book.description}}<br>
                 </div>
             </div>
         </section>

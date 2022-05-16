@@ -7,41 +7,46 @@
     <title>register</title>
 	<link rel="stylesheet" href="./css/effects.css">
     <link rel="stylesheet" href="./css/register.css">
+	<script src="./javascript/public.js"></script>
 	<script type="text/javascript" src="./lib/vue2.js"></script>
   </head>
   <body>
-  	<div id="user_reg"><p id="title_1">Register:</p>
-      <p id="title_2">register</p>
+  	<div id="user_reg"><p id="title_1">Add/Update userinfo</p>
 	<form action="#" method="post" name="form" >
 		<table>
 			<tr>
-				<td><p><font color ="red">*</font>User Name</p></td>
-				<td><input type="text" id="username" name="username" autocomplete="off" v-model="username"/></td>
+				<td><p><font color ="red">*</font>UserId</p></td>
+				<td><input type="text" id="userId" name="username" autocomplete="off" v-model="userId"/></td>
 				<td><p class="attention">at least 3 letters</p></td>
 			</tr>
+
 			<tr>
 				<td> <p><font color ="red">*</font>Password：</p></td>
 				<td><input type="password" id="password" name="password" v-model="password"/></td>
 				<td><p class="attention">at least 9 letters</p></td>
 			</tr>
-			<tr>
-				<td><p><font color ="red">*</font>Verify Password：</p></td>
-				<td><input type="password" id="password2" name="password2" v-model="password_guarantee"/></td>
-        <td><p class="attention"> input password again</p></td>
-				
-			</tr>
-      <tr>
+
+      		<tr>
 				<td><p><font color ="red">*</font>Email：</p></td>
 				<td><input type="email" id="email" name="email" autocomplete="off" v-model="email"/></td>
 				<td><p class="attention">input your Email</p></td>
+			</tr>
+
+			<tr>
+				<td><p><font color ="red">*</font>Type：</p></td>
+				<td><select style="width: 176px;" v-model="type">
+						<option value="0">student</option>
+						<option value="1">teacher</option>
+						<option value="2">administrator</option>
+					</select>
+				</td>
+        <td><p class="attention">user type</p></td>
+				
 			</tr>      
 			<tr>
 				<td></td>
 				<td >
-          <input type="button" id="submit_form" value="Submit" @click="submit()"/>		
-          <input type="checkbox" name="agreen" id="check" v-model="agree_term">
-          <div class="sim-checkbox not-checked"></div>
-          <p id="text1">I agree terms</p>
+          <input type="button" id="submit_form" value="Submit" @click="submit()"/>
           <div class="agree-tip">
               <i></i>请先阅读并同意相关协议~
           </div>

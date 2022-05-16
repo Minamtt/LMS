@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main_head.css">
+    <link rel="stylesheet" href="./css/manage_pages.css">
+    <link rel="stylesheet" href="./css/account_manage.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <link rel="stylesheet" href="./lib/index.css">
+    <script type="text/javascript" src="./lib/vue2.js"></script>
+    <script src="./javascript/public.js"></script>
+    <script src="./lib/index.js"></script>
+    <title>Account Management</title>
+</head>
+<body style="background-color: #F4E080;">
+    <header id="header">
+        <mainhead class="header"></mainhead>
+    </header>
+    <div id="main_container">
+        <h1>Borrowing records</h1>
+        <div class="userinfo">
+            <div class="infoitems" style="width:280px;">userId:{{uid}}</div>
+            <div class="infoitems" style="width:280px; color:red;">total overdue payment:{{debt}}</div>
+        </div>
+        <div class="table_container">
+            <table cellspacing="2">
+                <thead>
+                    <th>borrowId</th>
+                    <th>bookName</th>
+                    <th>CreateTime</th>
+                    <th>Due Time</th>
+                    <th>State</th>
+                    <th>Debt</th>
+                    <th>operation</th>
+                </thead>
+                <tbody>
+                    <tr v-for="(i,index) in list">
+                            <td>{{i.borrowId}}</td>
+                            <td>{{i.bookName}}</td>
+                            <td>{{i.createTime}}</td>
+                            <td>{{i.dueTime}}</td>
+                            <td v-if="i.state >= 10000">Returned</td>
+                            <td v-if="i.state >= 0 && i.state < 10000">Remain:{{i.state}} Days</td>
+                            <td v-if="i.state < 0">overdue:{{-i.state}}  Days</td>
+                            <td>￥{{i.debt.toFixed(2)}}</td>
+                            <td>
+                                <button class="update_btn" v-if="i.state < 10000" @click="retu(index)">return</button>
+                                <!-- <button class="delete_btn" @click="deleteUser(index)">Delete user</button> -->
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pages">
+            <el-pagination
+                :current-page.sync="currentPage"
+                @current-change="current_change"
+                background
+                layout="prev, pager, next"
+                :total="pages_total*10" style="margin:0px auto;">
+            </el-pagination>
+        </div>
+    </div>
+</body>
+<script src="./javascript/header_adm.js"></script>
+<script src="./javascript/accountmanage.js"></script>
+</html>

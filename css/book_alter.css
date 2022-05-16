@@ -1,0 +1,53 @@
+body{
+    background-color:#F5DEB3;
+  }
+form{
+        width: 500px;			
+        margin: 0 0 0 100px;
+    }
+input,select{
+    outline: none;
+}
+#update_book{        
+    text-align: center;
+    height: 660px;
+      width: 700px;
+      background-color:#FFFFF0;
+      float: middle;
+      margin: 40px auto;
+      border-radius: 10px;
+      color: #666666;
+      padding: 8px;
+  }
+  #title_1{
+    font-size: 30px;
+     margin: 0 0 5px 0;
+  }
+  
+  #check{
+    float:left;
+    margin: 13px 0 0 15px;       
+  }
+ 
+  #submit_form,#check,#buttons{
+    float:left;
+    margin: 0 0 0 0;
+    background-color:#4a86e8;
+    border-radius: 10px;
+      color:white;
+      padding: 2px;
+    height: 33px;
+      width: 80px;
+    border:0;
+  }
+  #submit_form:hover,#check:hover,#buttons:hover{
+      background-color: #003180;
+      cursor: pointer;
+  }
+ 
+  #message,#message tr th, #message tr td {
+
+    border:1px solid #ccc;
+
+    }
+  

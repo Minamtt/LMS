@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main_head.css">
+    <link rel="stylesheet" href="./css/categories.css">
+    <link rel="stylesheet" href="./css/borrowedbooks.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <link rel="stylesheet" href="./lib/index.css">
+    <script type="text/javascript" src="./lib/vue2.js"></script>
+    <script src="./lib/index.js"></script>
+    <script src="./javascript/public.js"></script>
+    <title>Borrowed Books</title>
+</head>
+<body style="background-color:#EBEBEB;">
+    <header id="header">
+        <mainhead class="header"></mainhead>
+    </header>
+    <div id="main_container">
+        <div class="return_title">
+            <div style="float: left;">| RETURN</div>
+            <div class="overdue_entry" onclick="location.href='./overdues.html'">OVERDUE LISTS ></div>
+        </div>
+        <hr color="#CFCFCF" height="1"/>
+        <div class="statstics">
+            <p>Borrowed:{{borrowed}}</p>
+            <p>be overdue:{{be_overdue}}</p>
+        </div>
+        <section class="books_container">
+            <h1 v-if="books.length === 0" style="text-align: center;">NO BOOK</h1>
+            <div class="book" v-for="(i,index) in books">
+                <img class="cover_pic" :src="i.img_url" alt="">
+                <div class="book_detail" >
+                    <div class="book_detail_title">{{i.bookname}}</div>
+                    <hr>
+                    <div class="book_detail_team">
+                        <p>{{i.author}}</p>
+                        <button @click="">return</button>
+                    </div>
+                    <div class="book_detail_text" style="color:red">
+                        <p v-if="i.overdue">Overdue! Please return the book and pay the fine as soon as possible.</p>
+                        <p v-else>
+                            Deadline for returning books:<br>
+                            {{i.last_time}} Day(s)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="pages">
+                <el-pagination
+                :current-page.sync="currentPage"
+                @current-change="current_change"
+                background
+                layout="prev, pager, next"
+                :total="pages_total*10" style="margin:0px auto;">
+                </el-pagination>
+            </div>
+        </section>
+    </div>
+</body>
+<script src="./javascript/header.js"></script>
+<script src="./javascript/borrowedbooks.js"></script>
+</html>

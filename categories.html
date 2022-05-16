@@ -70,6 +70,8 @@
             </div>
             <div class="pages">
                 <el-pagination
+                :current-page.sync="currentPage"
+                @current-change="current_change"
                 background
                 layout="prev, pager, next"
                 :total="pages_total*10" style="margin:0px auto;">

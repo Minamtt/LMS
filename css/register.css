@@ -72,6 +72,6 @@ form{
     font-size: 10px;
     float:left;
   }
-  input{
+  input,select{
       outline:none;
   }

@@ -1,3 +1,7 @@
+ul,ol,li,hr{
+    margin:0px;
+    padding:0px;
+}
 #main_container{
     padding-top: 3px;
     width: 1250px;
@@ -51,8 +55,10 @@
     padding-left: 15px;
     line-height: 92px;
     font-size: 25px;
+    overflow: hidden;
 }
 .category_list li:hover{
+    cursor: pointer;
     background-color: orange;
 }
 .right-arrow{
@@ -113,6 +119,7 @@
     background-color: #ECF0F0;
     border:1px solid #c6c7c7;
     width: 271px;
+    overflow: hidden;
 }
 .news_container{
     height: 164px;
@@ -133,8 +140,9 @@
 }
 .hot_list li{
     margin-left: 20px;
-    line-height: 40px;
+    line-height: 30px;
     font-size: 16px;
+
 }
 .hot_list li:first-child{
     height: 120px;
@@ -234,4 +242,8 @@
     padding-left: 20px;
     font-size: 15px;
     line-height: 25px;
+}
+#usermessage{
+    color:red;
+
 }

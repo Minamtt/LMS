@@ -1,0 +1,137 @@
+@font-face {
+    font-family: "sHeiTi";
+    src: url(../font/SourceHanSansCN-Regular.otf);
+}
+#main_container{
+    width:1400px;
+    height: 800px;
+    background-color: white;
+    margin:60px auto;
+    box-shadow: 2px 2px 18px rgba(36,36,36,0.6);
+    padding:20px 30px;
+    font-family: "sHeiTi",sans-serif;
+    position: relative;
+}
+button:hover{
+    cursor: pointer;
+}
+#main_container h1{
+    text-align: center;
+}
+.functions{
+    width:100%;
+    height: 40px;
+    /* background-color: rgb(255, 168, 240); */
+    padding: 4px 10px;
+    display: flex;
+    justify-content: center;
+    user-select: none;
+}
+.search-bar input{
+    outline: none;
+    height: 30px;
+    width: 500px;
+    font-size: 25px;
+    font-family: "sHeiTi",sans-serif;
+    float: left;
+}
+.search_btn{
+    color:white;
+    font-size: 25px;
+    float: left;
+    padding-left: 10px;
+}
+.search_btn:hover, .add_book_btn:hover{
+    cursor:pointer;
+    color: tomato;
+    text-shadow: 2px 2px 3px rgba(36,36,36,0.6);
+}
+.search-bar{
+    height: 100%;
+    width: 620px;
+    background-color: #157703;
+    padding: 2px 12px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.add_book_btn{
+    margin-left: 6px;
+    border: none;
+    font-size: 25px;
+    font-family: "sHeiTi",sans-serif;
+    border-radius: 5px;
+    color: white;
+    background-color: #157703;
+}
+.table_container{
+    width: 100%;
+    height: 530px;
+    border: 1px solid rgb(151, 151, 151);
+    margin-top: 15px;
+    overflow: auto;
+}
+table{
+    width: 100%;
+    border-spacing: 1;
+    user-select: none;
+}
+table th{
+    background-color: #EEEEEE;
+}
+table tr, table th{
+    text-align: left;
+    height: 36px;
+}
+table td{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+table tr:nth-child(2n + 1){
+    background-color: white;
+}
+table tr:nth-child(2n){
+    background-color: #EEEEEE;
+}
+table tr:hover{
+    background-color: #F4E080;
+}
+table th,table td{
+    padding-left: 3px;
+}
+.update_btn, .delete_btn{
+    margin-left: 3px;
+    height: 31px;
+    border: none;
+    font-size: 16px;
+    font-family: "sHeiTi",sans-serif;
+}
+.update_btn, .delete_btn{
+    margin-left: 7px;
+    height: 31px;
+    border: none;
+    font-size: 16px;
+    font-family: "sHeiTi",sans-serif;
+    border-radius: 6px;
+    color: white;
+}
+.update_btn{
+    background-color: rgb(39, 176, 255);
+}
+.delete_btn{
+    background-color: rgb(255, 92, 92);
+}
+.update_btn:hover{
+    background-color: rgb(106, 199, 253);
+}
+.delete_btn:hover{
+    background-color: rgb(255, 153, 153);
+}
+.pages{
+    position:absolute;
+    height: 40px;
+    /* background-color: crimson; */
+    bottom: 40px;
+    left:50%;
+    transform: translateX(-50%);
+}

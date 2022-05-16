@@ -21,56 +21,25 @@
             <aside class="leftside">
                 <div class="category_list_container">
                     <ul class="category_list" id="category_list">
-                        <li><span class="fas fa-list"></span> Education<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
-                        <li><span class="fas fa-list"></span> Novels<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
-                        <li><span class="fas fa-list"></span> Sociology<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
-                        <li><span class="fas fa-list"></span> Economics<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
-                        <li><span class="fas fa-list"></span> Art<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
-                        <div class="category_window" style="top:0px;">
-                            <a class="link" href="javascript:;">Children</a>
-                            <a class="link" href="javascript:;">Family</a>
-                            <a class="link" href="javascript:;">Primary School</a>
-                            <a class="link" href="javascript:;">Middle School</a>
-                            <a class="link" href="javascript:;">High School</a>
-                        </div>
-                        <div class="category_window" style="top:92px;">
-                            <a class="link" href="javascript:;">Romantic</a>
-                            <a class="link" href="javascript:;">War</a>
-                            <a class="link" href="javascript:;">Alien</a>
-                        </div>
-                        <div class="category_window" style="top:184px;">
-                            <a class="link" href="javascript:;">Psycology</a>
-                        </div>
-                        <div class="category_window" style="top:276px;">
-
-                        </div>
-                        <div class="category_window" style="top:368px;">
-                            <a class="link" href="javascript:;">Music</a>
-                            <a class="link" href="javascript:;">Photograph</a>
-                            <a class="link" href="javascript:;">Movie</a>
-                        </div>
+                        <li v-for="(i,index) in cates" @click="findCate(index)"><span class="fas fa-list"></span>{{i.categoryName}}<div class="right-arrow"><span class="fas fa-chevron-right"></span></div></li>
                     </ul>
                 </div>
             </aside>
             <div class="pic">
                 <div class="carousel">
                     <div class="dots" id="dots">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
+                        <div :class="stylelist[0]" @click.stop="change(0)"></div>
+                        <div :class="stylelist[1]" @click.stop="change(1)"></div>
+                        <div :class="stylelist[2]" @click.stop="change(2)"></div>
+                        <div :class="stylelist[3]" @click.stop="change(3)"></div>
                     </div>
-                    <img id="carousel_pic" src="" alt="示例图书" width="618" height="604">
+                    <img id="carousel_pic" :src="img_url" @click="go()" alt="示例图书" width="618" height="604">
                 </div>
             </div>
             <aside class="rightside">
                 <div class="news_container">
                     <p style="font-size:30px;">Announcement</p>
-                    <ul class="news_list">
-                        <li>Visitors today:</li>
-                        <li>Borrowed today:</li>
-                        <li>ps3</li>
-                    </ul>
+                    <p id="usermessage"><i class="fa" v-if="usermessage.length !== 0" style="margin-right: 6px;">&#xf0a1;</i>{{usermessage}}</p>
                 </div>
                 <div class="hot_container" id="hot_container">
                     <p style="font-size:30px;"><i class="fas fa-fire"></i>&emsp;Hot</p>
@@ -90,13 +59,6 @@
         </section>
         <section id="recommend">
             <h2 style="font-size:35px">Published Books</h2>
-            <p style="font-size:14px;" class="recommend_types">
-                <a href="javascript:;">Novel</a>
-                <a href="javascript:;">Self-help literature</a>
-                <a href="javascript:;">History</a>
-                <a href="javascript:;">Economics & Management</a>
-                <a href="javascript:;">More</a>
-            </p>
             <div class="pics_container">
                 
                 <div class="pic_big">
@@ -173,6 +135,6 @@
         <h2>2022.04</h2>
     </footer>
 </body>
-<script src="./javascript/mainpage.js"></script>
 <script src="./javascript/header.js"></script>
+<script src="./javascript/mainpage.js"></script>
 </html>
