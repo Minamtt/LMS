@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="./lib/vue2.js"></script>
+    <script src="./lib/index.js"></script>
+    <script src="./javascript/public.js"></script>
+    <title>Log in</title>
+    <link rel="stylesheet" href="./lib/index.css">
+    <link rel="stylesheet" href="./css/effects.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/scan_login.css">
+</head>
+<body>
+<div id="scan_login" class="scan_login maincontainer" >
+    <div class="leftcontainer">
+        <div class="decoratetxt">
+            <div class="icon-home">
+                <i class="fas fa-home" style="font-size:80px;"></i>
+            </div>
+            <div class="protitle">
+                <p style="font-size:30px">图书管理系统</p>
+                <p style="font-size:18px; margin-top:3px;">Library management system</p>
+            </div>
+            <div class="motto">
+                莫等闲，白了少年头，空悲切！<br>
+                业精于勤，荒于嬉；行成于思，毁于随。<br>
+                Reading is a journey through the mind.<br>
+                The limit of my world is the limit of my words.<br>
+            </div>
+        </div>
+    </div>
+    <div class="rightcontainer">
+        <div class="logincontainer" id="logincontainer" @keydown.enter="post">
+            <p style="font-size:30px">
+                登录
+            </p>
+            <p style="font-size:18px; ">LOGIN</p>
+            <p class="tip">Please scan the user's barcode</p>
+            <p style="font-size:12px; height:13px; color:red; margin-top:8px; margin-left:6px;">{{tipMessage}}</p>
+            <el-input class="scan_input" v-model="userId" placeholder="auto input after scanning" disabled>
+                <template slot="prepend">UserID</template>
+            </el-input>
+            <el-button class="login_btn" type="primary" :disabled="!scanOK" @click="handleSubmit">Login</el-button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="./javascript/effects.js"></script>
+<script src="./javascript/scancode.js"></script>
+<script src="./javascript/scan_login.js"></script>
+</html>

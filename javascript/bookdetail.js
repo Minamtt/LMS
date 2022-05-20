@@ -34,13 +34,13 @@ const vm = new Vue({
         },
         borrowBook(){
             if (this.button_available){
-                let pms = SendJSON("GET",`${serverHost}:8002/bookservice/borrowbook/${this.selected}`,null,token);
-                pms.then((value) => {
-                    alert(value.message);
-                    this.getBookDetail();
-                },(reason) => {
-                    alert(reason);
-                });
+                // 保存书籍二维码
+                localStorage.scanMsg = JSON.stringify({
+                    mode: 0,
+                    barcode: this.book.barcode
+                })
+                // 导航到借书面板
+                navTo('/rjgc/scan_borrow.html', {menu: 'board'})
             }
         },
         getEachBooks(){
@@ -74,6 +74,7 @@ const vm = new Vue({
                 this.book.total = value.data.bookInfo.bookNum;
                 this.book.remain = value.data.bookInfo.bookRemain;
                 this.book.location = value.data.bookInfo.location;
+                this.book.barcode = value.data.bookInfo.isbnCode;
                 this.getEachBooks();
             });
         }

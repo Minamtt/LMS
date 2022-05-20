@@ -56,4 +56,20 @@ function getQueryVariable(variable)
     return undefined;
 }
 
+// 导航到某个网址
+function navTo(url, query) {
+    let concatStr = url
+    if(query && Object.keys(query).length !== 0) {
+        const keys = Object.keys(query)
+        for(let i in keys) {
+            if(i == 0) {
+                concatStr += `?${keys[i]}=${query[keys[i]]}`
+            } else {
+                concatStr += `&${keys[i]}=${query[keys[i]]}`
+            }
+        }
+    }
+    location.href = concatStr
+}
+
 const serverHost = "http://47.108.137.135";

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/main_head.css">
+    <link rel="stylesheet" href="./lib/index.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <link rel="stylesheet" href="./css/borrowedbooks.css">
+    <link rel="stylesheet" href="./css/scan_board.css">
+    <link rel="stylesheet" href="./css/scan_borrow.css">
+    <title>Document</title>
+    <script src="./lib/vue2.js"></script>
+    <script src="./lib/index.js"></script>
+    <script src="./javascript/public.js"></script>
+</head>
+<body>
+<header id="header">
+    <mainhead class="header"></mainhead>
+</header>
+<main id="scan_borrow" class="scan_borrow">
+    <aside class="side_menu">
+        <el-menu :default-active="menu[curIndex].key"mode="vertical" @select="changeMenu">
+            <el-menu-item v-for="item in menu" :index="item.key">{{item.name}}</el-menu-item>
+        </el-menu>
+    </aside>
+    <article class="content">
+        <section class="borrowed" v-if="curIndex===0">
+            <borrowedbooks></borrowedbooks>
+        </section>
+        <section class="board" v-else>
+            <board></board>
+        </section>
+    </article>
+</main>
+</body>
+<script src="./javascript/header.js"></script>
+<script src="./javascript/public.js"></script>
+<script src="./javascript/scancode.js"></script>
+<script src="./javascript/scan_borrow.js"></script>
+</html>

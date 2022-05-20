@@ -2,10 +2,7 @@
     font-family: "sHeiTi";
     src: url("../font/SourceHanSansCN-Regular.otf");
 }
-.main_container{
-    width:903px;
-    height: 685px;
-    margin:103px auto 50px auto;
+.borrowed_books{
     font-family: "sHeiTi", sans-serif;
     background-color: #ECF1F2;
     border: 1px solid #CED0D0;

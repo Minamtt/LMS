@@ -1,0 +1,20 @@
+.scan_login {
+
+}
+
+.scan_login .tip {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.scan_login .scan_input {
+
+}
+
+.scan_login .login_btn {
+    width: 60%;
+    height: 40px;
+    margin-top: 50px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
