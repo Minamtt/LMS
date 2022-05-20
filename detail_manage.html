@@ -44,7 +44,7 @@
                         <td>{{i.borrower}}</td>
                         <td>
                             <button class="update_btn" @click="viewBarcode(index)">Barcode</button>
-                            <button class="delete_btn" @click="deletebook(index)">Delete</button>
+                            <button class="delete_btn" v-if="i.state === 0" @click="deletebook(index)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
