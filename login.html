@@ -32,11 +32,16 @@
         </div>
         <div class="rightcontainer">
             <div class="logincontainer" id="logincontainer" @keydown.enter="post">
-                <p style="font-size:30px">
-                    登录
-                    <!-- <a title="进入管理员登录页面" href="./adm_login.html" class="adm_entry">admin <i class="fas fa-chevron-right"></i></a> -->
-                </p>
-                <p style="font-size:18px; ">LOGIN</p>
+                <div class="login_head">
+                    <div>
+                        <p style="font-size:30px">
+                            登录
+                        </p>
+                        <p style="font-size:18px">LOGIN</p>
+                    </div>
+                    <a class="nav" href="./scan_login.html">扫码登录<br/>scan barcode</a>
+                </div>
+
                 <p style="font-size:12px; height:13px; color:red; margin-top:8px; margin-left:6px;">{{tipMessage}}</p>
                 <form>
                     <div class="inputbar">

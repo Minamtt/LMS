@@ -35,12 +35,18 @@
     </div>
     <div class="rightcontainer">
         <div class="logincontainer" id="logincontainer" @keydown.enter="post">
-            <p style="font-size:30px">
-                登录
-            </p>
-            <p style="font-size:18px; ">LOGIN</p>
-            <p class="tip">Please scan the user's barcode</p>
+            <div class="login_head">
+                <div>
+                    <p style="font-size:30px">
+                        登录
+                    </p>
+                    <p style="font-size:18px">LOGIN</p>
+                </div>
+                <a class="nav" href="./login.html">账号密码登录<br/>input usr & pwd</a>
+            </div>
             <p style="font-size:12px; height:13px; color:red; margin-top:8px; margin-left:6px;">{{tipMessage}}</p>
+            <p class="tip">Please scan the user's barcode</p>
+            <el-image class="user_barcode" :src="userBarcode"></el-image>
             <el-input class="scan_input" v-model="userId" placeholder="auto input after scanning" disabled>
                 <template slot="prepend">UserID</template>
             </el-input>

@@ -36,7 +36,7 @@ var mainhead = Vue.extend({
         logout(){
             let now = new Date();
             document.cookie = `token='';expires=${now.toGMTString()};`;
-            window.location.href = "./index.html";
+            window.location.href = "./scan_login.html";
         },
     },
     beforeMount(){

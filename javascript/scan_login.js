@@ -4,6 +4,7 @@ new Vue({
     scanOK: false,
     userId: '',
     tipMessage: '',
+    userBarcode: 'https://edu6666.oss-cn-beijing.aliyuncs.com/barcode/2022/05/04/7f2ec9b9e5354937b99613ecd9765cf1frx.jpg',
   },
   mounted() {
     // 监听扫码事件

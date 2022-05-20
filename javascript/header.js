@@ -42,7 +42,7 @@ var mainhead = Vue.extend({
                 <button class="h_w_exitbtn" v-if="status===1" onclick="location.href='./order.html'">My orders</button>
                 <button class="h_w_exitbtn" v-if="status===1" onclick="location.href='./change_password.html'">Change Password</button>
                 <button class="h_w_exitbtn" v-if="status===1" @click="logout">Log out</button>
-                <button class="h_w_exitbtn" v-if="status===0" onclick="location.href='./index.html'">Log in</button>
+                <button class="h_w_exitbtn" v-if="status===0" onclick="location.href='../login.html'">Log in</button>
             </div>
             <i class="fas fa-user"></i>
         </div>
@@ -52,7 +52,7 @@ var mainhead = Vue.extend({
         logout(){
             let now = new Date();
             document.cookie = `token='';expires=${now.toGMTString()};`;
-            window.location.href = "./index.html";
+            window.location.href = "./scan_login.html";
         },
         search(){
             location.href = `./categories.html?search=${decodeURI(this.search_for)}`;

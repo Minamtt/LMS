@@ -4,17 +4,22 @@
 
 .scan_login .tip {
     font-size: 20px;
-    margin: 20px 0;
+    margin: 10px 0;
+}
+
+.scan_login .user_barcode {
+    width: 100%;
+    height: 50px;
 }
 
 .scan_login .scan_input {
-
+    margin: 20px auto;
 }
 
 .scan_login .login_btn {
     width: 60%;
     height: 40px;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: 50%;
     transform: translateX(-50%);
 }

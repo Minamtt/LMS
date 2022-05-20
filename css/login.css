@@ -131,3 +131,17 @@ p{
     height: 45px;
     line-height: 45px;
 }
+.login_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.login_head .nav {
+    text-decoration:none;
+}
+
+.login_head .nav:hover,
+.login_head .nav:active {
+    color: #92AFCA;
+}
