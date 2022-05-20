@@ -80,6 +80,7 @@ var mainhead = Vue.extend({
                 }
                 this.email = value.data.userInfo.mail;
                 this.id = value.data.userInfo.userId;
+
             },(reason) =>{
                 this.username = "User";
                 this.email = "";

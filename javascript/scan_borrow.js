@@ -61,7 +61,6 @@ const borrowedbooks = Vue.extend({
     getBorrowedBooks() {
       const pms = SendJSON("GET", `${serverHost}:8002/bookservice/getborrowinfo`, null, token);
       pms.then((value) => {
-        console.log(value)
         this.list = [];
         for (let i of value.data.borrowList) {
           let item = {
@@ -71,7 +70,7 @@ const borrowedbooks = Vue.extend({
             createTime: i.createTime,
             dueTime: i.dueTime,
             state: i.state,
-            barcode: i.isbnCode
+            barcode: i.url
             // debt:
           };
           item.debt = 0;
@@ -103,7 +102,7 @@ const borrowedbooks = Vue.extend({
         barcode: this.list[index].barcode
       })
       // 导航到借书面板
-      navTo('/rjgc/scan_borrow.html', {menu: 'board'})
+      navTo('./scan_borrow.html', {menu: 'board'})
     }
   },
   mounted() {
@@ -129,12 +128,13 @@ const board = Vue.extend({
       mode: 0,
       scanOK: false,
       scanMsg: null,
+      userMsg: null,
       bookId: '',
     }
   },
   template: `
     <div class="scan_board">
-      <p class="title">Please scan the barcode below with a scanner</p>
+      <p class="title">{{scanMsg ? 'Please scan the barcode below with a scanner' : 'Please choose a book to borrow or return from other pages'}}</p>
       <div class="msg">
         <el-input class="input"  placeholder="auto input after scanning" v-model="bookId" disabled>
           <template slot="prepend">BookID</template>
@@ -155,6 +155,7 @@ const board = Vue.extend({
   `,
   mounted() {
     this.getScanMsg()
+    this.getUserMsg()
     // 监听扫码事件
     if(this.scanMsg) {
       new ScanCode(this.handleScan)
@@ -164,8 +165,11 @@ const board = Vue.extend({
     getScanMsg() {
       this.scanMsg = localStorage.scanMsg ? JSON.parse(localStorage.scanMsg) : null
     },
+    getUserMsg() {
+      this.userMsg = localStorage.userMsg ? JSON.parse(localStorage.userMsg) : null
+    },
     toBorrowed() {
-      navTo('/rjgc/scan_borrow.html', {menu: 'board'})
+      navTo('./scan_borrow.html', {menu: 'borrowed'})
     },
     handleScan(bookId) {
       this.bookId = bookId
@@ -174,22 +178,33 @@ const board = Vue.extend({
     handleSubmit() {
       if(this.scanMsg.mode === 0) {
         this.borrowBook()
-      } else {
+      } else if(this.scanMsg.mode === 1) {
         this.returnBook()
       }
     },
     borrowBook() {
-      let pms = SendJSON("GET",`${serverHost}:8002/bookservice/borrowbook/${this.bookId}`,null,token);
+      let pms = SendJSON("GET",`${serverHost}:8002/bookservice/borrowbook/${this.bookId}/${this.userMsg.userId}`,null,token);
       pms.then((value) => {
         alert(value.message);
-        this.localStorage.scanMsg = null
+        localStorage.scanMsg = ''
         this.toBorrowed()
       },(reason) => {
+        localStorage.scanMsg = ''
+        this.toBorrowed()
         alert(reason);
       });
     },
     returnBook() {
-
+      let pms = SendJSON("GET",`${serverHost}:8002/bookservice/returnbook/${this.bookId}`,null,token);
+      pms.then((value) => {
+        alert(value.message);
+        localStorage.scanMsg = ''
+        this.toBorrowed()
+      },(reason) => {
+        localStorage.scanMsg = ''
+        this.toBorrowed()
+        alert(reason);
+      });
     }
   }
 })
@@ -216,7 +231,7 @@ new Vue({
     changeMenu(key, keyPath) {
       let index = this.menu.findIndex((item) => item.key === key)
       index = index === -1 ? 0 : index
-      navTo('/rjgc/scan_borrow.html', {menu: this.menu[index].name})
+      navTo('./scan_borrow.html', {menu: this.menu[index].name})
     }
   },
   mounted() {

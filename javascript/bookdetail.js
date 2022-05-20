@@ -37,10 +37,10 @@ const vm = new Vue({
                 // 保存书籍二维码
                 localStorage.scanMsg = JSON.stringify({
                     mode: 0,
-                    barcode: this.book.barcode
+                    barcode: this.selection[this.selection.findIndex((item) => item.value === this.selected)].barcode
                 })
                 // 导航到借书面板
-                navTo('/rjgc/scan_borrow.html', {menu: 'board'})
+                navTo('./scan_borrow.html', {menu: 'board'})
             }
         },
         getEachBooks(){
@@ -50,6 +50,7 @@ const vm = new Vue({
                 for (let i of value.data.booklist){
                     let _book = {
                         value:i.bookId,
+                        barcode: i.url,
                         label:i.bookId
                     }
                     this.selection.push(_book);
@@ -74,10 +75,12 @@ const vm = new Vue({
                 this.book.total = value.data.bookInfo.bookNum;
                 this.book.remain = value.data.bookInfo.bookRemain;
                 this.book.location = value.data.bookInfo.location;
-                this.book.barcode = value.data.bookInfo.isbnCode;
                 this.getEachBooks();
             });
         }
+    },
+    computed: {
+
     },
     mounted(){
         if (!token){
