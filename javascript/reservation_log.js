@@ -1,3 +1,4 @@
+const token = getCookie("token");
 const vm = new Vue({
     el:".main_container",
     data:{
