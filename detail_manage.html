@@ -41,6 +41,8 @@
                         <td>{{i.bookid}}</td>
                         <td v-if="i.state === 0" style="color: green;">available</td>
                         <td v-if="i.state === 1" style="color: red;">borrowed</td>
+                        <td v-if="i.state === 2" style="color: red;">damaged</td>
+                        <td v-if="i.state === 3" style="color: red;">lost</td>
                         <td>{{i.borrower}}</td>
                         <td>
                             <button class="update_btn" @click="viewBarcode(index)">Barcode</button>
