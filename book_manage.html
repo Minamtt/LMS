@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./lib/index.css">
     <link rel="stylesheet" href="./fa/css/all.css">
     <script src="./javascript/public.js"></script>
+    <script src="./javascript/utils.js"></script>
     <script type="text/javascript" src="./lib/vue2.js"></script>
     <script src="./lib/index.js"></script>
     <title>Book Management</title>
@@ -30,6 +31,14 @@
             </div>
             <button class="add_book_btn" onclick="location.href = './book_alter.html'">add book</button>
         </div>
+        <div class="statistic" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0 0; font-size: 20px;">
+            <p><span>totBook : </span><span>{{statistic.totBook}}</span></p>
+            <p><span>totBorrower : </span><span>{{statistic.totBorrower}}</span></p>
+            <p><span>totOrder : </span><span>{{statistic.totOrder}}</span></p>
+            <p><span>totDamaged : </span><span>{{statistic.totDamaged}}</span></p>
+            <p><span>totLost : </span><span>{{statistic.totLost}}</span></p>
+            <p><span>totDebt : </span><span>{{statistic.totDebt}}</span></p>
+        </div>
         <div class="table_container">
             <table cellspacing="2">
                 <thead>
@@ -38,6 +47,7 @@
                     <th>price</th>
                     <th>author</th>
                     <th>category</th>
+                    <th>area</th>
                     <th>number</th>
                     <th>operations</th>
                 </thead>
@@ -48,6 +58,7 @@
                         <td>{{i.price.toFixed(2)}}</td>
                         <td>{{i.author}}</td>
                         <td>{{i.category}}</td>
+                        <td>{{i.area}}</td>
                         <td>{{i.number}}</td>
                         <td>
                             <button class="update_btn" @click="viewBarcode(index)">Barcode</button>
