@@ -19,7 +19,7 @@ var vm = new Vue({
             const pms = SendJSON("POST",`${serverHost}:8001/usercenter/regist`,post_data,token);
             pms.then((value) => {
                 pop_up_tip(value.message,1);
-                location.href = "../scan_login.html";
+                location.href = "./scan_login.html";
             },(reason) => {
                 pop_up_tip(reason,0);
             });
