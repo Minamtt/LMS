@@ -26,7 +26,7 @@
         <h1>Book Management</h1>
         <div class="functions">
             <div class="search-bar">
-                <input type="text" v-model="search_for" placeholder="enter bookname" @keydown.enter="search()"></input>
+                <input type="text" v-model="search_for" placeholder="bookname or isbn" @keydown.enter="search()"></input>
                 <div class="search_btn" @click="search()" >search</div>
             </div>
             <button class="add_book_btn" onclick="location.href = './book_alter.html'">add book</button>

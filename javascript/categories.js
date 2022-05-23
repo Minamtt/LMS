@@ -2,71 +2,12 @@ const search_for = getQueryVariable("search");
 var vm = new Vue({
     el:"#main_container",
     data:{
-        cates:[
-            // {
-            //     categoryId:1,
-            //     categoryName:"Education",
-            //     children:[
-            //         {
-            //             categoryId:101,
-            //             categoryName:"Family"
-            //         },
-            //         {
-            //             categoryId:102,
-            //             categoryName:"Children"
-            //         },
-            //         {
-            //             categoryId:103,
-            //             categoryName:"Primary School"
-            //         }
-            //     ]
-            // },
-            // {
-            //     categoryId:2,
-            //     categoryName:"Novel",
-            //     children:[
-            //         {
-            //             categoryId:201,
-            //             categoryName:"Western"
-            //         },
-            //         {
-            //             categoryId:202,
-            //             categoryName:"Chinese"
-            //         },
-            //         {
-            //             categoryId:203,
-            //             categoryName:"Arabric"
-            //         }
-            //     ]
-            // }
-        ],
+        cates:[],
         cate1_pointer:0,
         cate2_pointer:0,
         currentPage:1,
         pages_total:4,
-        books:[
-            // {
-            //     isbn:"6",
-            //     img_url:"./img/e.jpg",
-            //     bookname:"Yuri is master!",
-            //     author:"Yuri",
-            //     description:"Be one with Yuri!"
-            // },
-            // {
-            //     isbn:"7",
-            //     img_url:"./img/e2.jpg",
-            //     bookname:"How is it going?",
-            //     author:"Macheal Bilnt",
-            //     description:"No Description."
-            // },
-            // {
-            //     isbn:"9",
-            //     img_url:"./img/e3.jpg",
-            //     bookname:"How is it going?",
-            //     author:"Macheal Bilnt",
-            //     description:"No Description."
-            // }
-        ]
+        books:[]
     },
     methods:{
         getBookDetail(number){
@@ -87,7 +28,12 @@ var vm = new Vue({
             }
             let sendmessage = {};
             if (search_for){
-                sendmessage.searchName = decodeURI(search_for);
+                let keyword = decodeURI(search_for)
+                if (isConvertToNum(keyword)) {
+                    sendmessage.isbn = keyword;
+                } else {
+                    sendmessage.searchName = keyword;
+                }
             }
             if (this.cate1_pointer !== 0){
                 sendmessage.parentID = this.cates[this.cate1_pointer - 1].categoryId;
@@ -95,6 +41,7 @@ var vm = new Vue({
             if (this.cate2_pointer !== 0){
                 sendmessage.categoryId = this.cates[this.cate1_pointer - 1].children[this.cate2_pointer  - 1].categoryId;
             }
+            // 根据关键词搜索
             let pms = SendJSON("POST",`${serverHost}:8002/bookservice/booksearch/${page}/6`,sendmessage);
             pms.then((value) => {
                 this.books = [];

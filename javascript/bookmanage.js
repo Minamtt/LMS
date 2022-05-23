@@ -31,7 +31,12 @@ const vm = new Vue({
             }
             let sendmessage = {};
             if (this.search_for.trim().length > 0){
-                sendmessage.searchName = this.search_for;
+                let keyword = decodeURI(this.search_for)
+                if (isConvertToNum(keyword)) {
+                    sendmessage.isbn = keyword;
+                } else {
+                    sendmessage.searchName = keyword;
+                }
             }
             let pms = SendJSON("POST",`${serverHost}:8002/bookservice/booksearch/${page}/12`,sendmessage,token);
             pms.then((value) => {

@@ -28,7 +28,7 @@ var mainhead = Vue.extend({
             </ul>
         </nav>
         <div class="h_search">
-            <input type="text" class="h_searchbar" placeholder="javascript" v-model="search_for" @keydown.enter="search" />
+            <input type="text" class="h_searchbar" placeholder="bookname or isbn" v-model="search_for" @keydown.enter="search" />
             <div class="h_searchbutton" @click="search">
                 <i class="fas fa-search" ></i>
             </div>
