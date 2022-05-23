@@ -134,7 +134,8 @@ p{
 .login_head {
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: center;
+    text-align: right;
 }
 
 .login_head .nav {

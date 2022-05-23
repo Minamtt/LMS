@@ -7,9 +7,32 @@
     margin: 10px 0;
 }
 
+.scan_login .option {
+    display: flex;
+    justify-content: space-between;
+}
+
+.scan_login .option {
+    height: 30px;
+}
+
+.scan_login .option .tip {
+    margin: 0;
+}
+
+.scan_login .option .el-input {
+    width: 100px;
+    height: 30px;
+}
+
+.scan_login .option .el-input input {
+    height: 30px;
+}
+
 .scan_login .user_barcode {
     width: 100%;
     height: 50px;
+    margin-top: 30px;
 }
 
 .scan_login .scan_input {
@@ -19,7 +42,7 @@
 .scan_login .login_btn {
     width: 60%;
     height: 40px;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 50%;
     transform: translateX(-50%);
 }

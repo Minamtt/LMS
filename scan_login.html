@@ -45,8 +45,18 @@
                 <a class="nav" href="./login.html">账号密码登录<br/>input usr & pwd</a>
             </div>
             <p style="font-size:12px; height:13px; color:red; margin-top:8px; margin-left:6px;">{{tipMessage}}</p>
-            <p class="tip">Please scan the user's barcode</p>
-            <el-image class="user_barcode" :src="userBarcode"></el-image>
+            <div class="option">
+                <span class="tip">Scan the barcode of </span>
+                <el-select v-model="curBarcode">
+                    <el-option
+                        v-for="item in userBarcode"
+                        :key="item.name"
+                        :label="item.name"
+                        :value="item.url">
+                    </el-option>
+                </el-select>
+            </div>
+            <el-image class="user_barcode" v-show="curBarcode !== 'offered'" :src="curBarcode"></el-image>
             <el-input class="scan_input" v-model="userId" placeholder="auto input after scanning" disabled>
                 <template slot="prepend">UserID</template>
             </el-input>
