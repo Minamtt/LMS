@@ -1,121 +1,137 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Update Book</title>
     <link rel="stylesheet" href="./css/book_alter.css">
     <script src="./javascript/public.js"></script>
     <script src="./lib/vue2.js"></script>
-  </head>
-  <body>
-  	<div id="update_book"><p id="title_1">Add/Upadate Book</p>
-      
-	<form action="#" method="post" name="form" >
-		<table>
-			<tr>
-				<td><p style="float:left;margin-bottom:0;">ISBN</p></td>		
-        
-			</tr>
-			<tr>
-        <td><input v-model="isbn" type="text" id="isbn" name="isbn" style="width:405px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin" :disabled="mode === 1" /></td>
-				<td><input @click="checkISBN()" type="button" id="check" value="Check"/>		</td>
-			</tr>
-    </table>
-    
-       <table id="message" cellpadding="0" cellspacing="0" style=" border-collapse: collapse;">
-        <tr>
-            <td style="width:100px;">bookname:</td>
-            <td style="width:500px;">{{bookdetail.bookname}}</td>
-        </tr>
-        <tr>
-            <td>author:</td>
-            <td>{{bookdetail.author}}</td>
-        </tr>
-        <tr>
-            <td>publisher:</td>
-            <td>{{bookdetail.publisher}}</td>
-        </tr>
+</head>
+<body>
+<div id="update_book"><p id="title_1">Add/Upadate Book</p>
+    <form action="#" method="post" name="form">
+        <table>
+            <tr>
+                <td><p style="float:left;margin-bottom:0;">ISBN</p></td>
+            </tr>
+            <tr>
+                <td><input v-model="isbn" type="text" id="isbn" name="isbn"
+                           style="width:405px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin"
+                           :disabled="mode === 1"/></td>
+                <td><input @click="checkISBN()" type="button" id="check" value="Check"/></td>
+            </tr>
+        </table>
 
-        <tr>
-            <td>price:</td>
-            <td>{{bookdetail.price}}</td>
-        </tr>
+        <table id="message" cellpadding="0" cellspacing="0" style=" border-collapse: collapse;">
+            <tr>
+                <td style="width:100px;">bookname:</td>
+                <td style="width:500px;">{{bookdetail.bookname}}</td>
+            </tr>
+            <tr>
+                <td>author:</td>
+                <td>{{bookdetail.author}}</td>
+            </tr>
+            <tr>
+                <td>publisher:</td>
+                <td>{{bookdetail.publisher}}</td>
+            </tr>
 
-    </table>
-			
-    <table>
-			<tr>
-				<td><p style="float:left;margin-bottom:0;">parent category</p></td>		
-        
-			</tr>
-      <tr><td><select v-model="parent_category" name="classify_1" id="cly_1" style="width:199px;height:31px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin">
-        <option v-for="i in cates" :value="i.categoryId">{{i.categoryName}}</option>
-        <option :value=-1 >new category...</option>
-      </select></td>
-        <td><input type="text" v-model="new_parent_category" id="" name="" style="width:199px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin" :disabled="!available1"/></td>
-			</tr>
-    </table>
-    <table>
-			<tr>
-				<td><p style="float:left;margin-bottom:0;">child category</p></td>
-			</tr>
-      <tr><td><select name="classify_2" v-model="child_category" id="cly_2" style="width:199px;height:31px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin">
-        <option v-for="i in child_cates" :value="i.categoryId">{{i.categoryName}}</option>
-        <option :value=-1>new category...</option>
-      </select></td>
-			
-        <td><input type="text" v-model="new_child_category" id="" name="" style="width:199px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin" :disabled="!available2" /></td>
-			</tr>
-    </table>
-    
-    <table>
-			<tr>
-				<td><p style="float:left;margin-bottom:0;">area</p></td>		
-        
-			</tr>
-			<tr>
-        <td>
-          <select v-model="area" style="width:486px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin">
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-          </select>
-        </td>
-				
-			</tr>
-      <tr>
-				<td><p style="float:left;margin-bottom:0;">room</p></td>		
-        
-			</tr>
-			<tr>
-        <td>
-          <select v-model="loCation" style="width:486px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin">
-              <option v-for="i in rooms" :value="i">{{i}}</option>
-          </select>
-        </td>
-				
-			</tr>
-      <tr>
-				<td><p style="float:left;margin-bottom:0;">number</p></td>		
-        
-			</tr>
-			<tr>
-        <td><input v-model="number" type="text" id="remaining_number" name="remain_number" style="width:486px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin" :disabled="mode === 1"/></td>
-				
-			</tr>
-      <!--
-      <tr>
-				<td><p style="float:left;margin-bottom:0;">description</p></td>		
-        
-			</tr>
-			<tr>
-        <td><textarea v-model="description" style="width:486px;height:80px;border-radius:5px; border:1;border-color:#A9A9A9; resize:none;"></textarea></td>
-				
-			</tr> -->
-    </table>
-    <input type="button" id="buttons" @click="submit()" value="Submit" style="margin-left:200px; margin-top:20px;"/>
-	</form>
- </div>
+            <tr>
+                <td>price:</td>
+                <td>{{bookdetail.price}}</td>
+            </tr>
+
+        </table>
+        <!--    父子分类    -->
+        <table>
+            <tr>
+                <td><p style="float:left;margin-bottom:0;">parent category</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <select v-model="parent_category" name="classify_1" id="cly_1"
+                            style="width:199px;height:31px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin">
+                        <option v-for="i in cates" :value="i.categoryId">{{i.categoryName}}</option>
+                        <option :value=-1>new category...</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" v-model="new_parent_category" id="" name=""
+                           style="width:199px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin"
+                           :disabled="parent_category !== -1"/>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><p style="float:left;margin-bottom:0;">child category</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="classify_2" v-model="child_category" id="cly_2"
+                            style="width:199px;height:31px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin">
+                        <option v-for="i in child_cates" :value="i.categoryId">{{i.categoryName}}</option>
+                        <option :value=-1>new category...</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" v-model="new_child_category" name=""
+                           style="width:199px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin"
+                           :disabled="child_category !== -1"/>
+                </td>
+            </tr>
+        </table>
+        <!--    父子区域    -->
+        <table>
+            <tr>
+                <td><p style="float:left;margin-bottom:0;">parent location</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="classify_2" v-model="parent_location" id="cly_2"
+                            style="width:199px;height:31px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin">
+                        <option v-for="i in locations" :value="i.location">{{i.location}}</option>
+                        <option :value="-1">new location...</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" v-model="new_parent_location" name=""
+                           style="width:199px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin"
+                           :disabled="parent_location !== -1"/>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><p style="float:left;margin-bottom:0;">child location</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="classify_2" v-model="child_location" id="cly_2"
+                            style="width:199px;height:31px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin">
+                        <option v-for="i in child_locas" :value="i.location">{{i.location}}</option>
+                        <option :value="-1">new location...</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" v-model="new_child_location" name=""
+                           style="width:199px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin"
+                           :disabled="child_location !== -1"/>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><p style="float:left;margin-bottom:0;">number</p></td>
+            </tr>
+            <tr>
+                <td><input v-model="number" type="text" id="remaining_number" name="remain_number"
+                           style="width:486px;height:25px;border-radius:5px; border:1;border-color:#A9A9A9;border-width:thin"
+                           :disabled="mode === 1"/></td>
+            </tr>
+        </table>
+        <input type="button" id="buttons" @click="submit()" value="Submit" style="margin-left:200px; margin-top:20px;"/>
+    </form>
+</div>
 </body>
 <script src="./javascript/book_alter.js"></script>
 </html>

@@ -15,9 +15,12 @@ const vm = new Vue({
         child_category:-1,
         new_parent_category:"",
         new_child_category:"",
+        locations: [],
+        parent_location:-1,
+        child_location:-1,
+        new_parent_location:"",
+        new_child_location:"",
         number:1,
-        area:"",
-        loCation:"",
         mode:0  //0 -> add， 1 -> update
     },
     methods:{
@@ -32,25 +35,42 @@ const vm = new Vue({
                 alert(reason);
             });
         },
+        getBookInfo() {
+            let pms2 = SendJSON("GET",`${serverHost}:8002/bookservice/getbookinfobyisbn/${required_isbn}`);
+            pms2.then((value) => {
+                this.isbn = value.data.bookInfo.isbn;
+                this.bookdetail.bookname = value.data.bookInfo.bookName;
+                this.bookdetail.author = value.data.bookInfo.author;
+                this.bookdetail.price = value.data.bookInfo.bookPrice;
+                this.bookdetail.publisher = value.data.bookInfo.publisher;
+                this.parent_location = value.data.bookInfo.parentLocation;
+                this.child_location = value.data.bookInfo.location;
+                this.parent_category = value.data.bookInfo.parentId;
+                this.child_category = value.data.bookInfo.categoryId;
+                this.total_number = value.data.bookInfo.bookNum;
+            });
+        },
         submit(){
             if (this.isbn.length === 0){
                 alert("please input isbn");
                 return;
             }
-            if (this.loCation.length === 0){
-                alert("please input location");
+            if (
+              (this.parent_category === -1 && this.new_parent_category.trim().length === 0) ||
+              (this.child_category === -1 && this.new_child_category.trim().length === 0)
+            ){
+                alert("please input category name.");
                 return;
             }
             if (
-                    (this.available1 && this.new_parent_category.trim().length === 0) || 
-                    (this.available2 && this.new_child_category.trim().length === 0)
-                ){
-                alert("please input category name.");
+              (this.parent_location === -1 && this.new_parent_location.trim().length === 0) ||
+              (this.child_location === -1 && this.new_child_location.trim().length === 0)
+            ){
+                alert("please input location name.");
                 return;
             }
             let sendmessage = {
                 isbn:this.isbn,
-                location:this.loCation,
                 num:Number.parseInt(this.number),
             };
             if (this.parent_category === -1){
@@ -59,12 +79,23 @@ const vm = new Vue({
             else{
                 sendmessage.parentName = this.cates.filter((i) => i.categoryId === this.parent_category)[0].categoryName;
             }
-
             if (this.child_category === -1){
                 sendmessage.categoryName = this.new_child_category;
             }
             else {
                 sendmessage.categoryName = this.child_cates.filter((i) => i.categoryId === this.child_category)[0].categoryName;
+            }
+            if (this.parent_location === -1){
+                sendmessage.parentLocation = this.new_parent_location;
+            }
+            else{
+                sendmessage.parentLocation = this.locations.filter((i) => i.location === this.parent_location)[0].location;
+            }
+            if (this.child_location === -1){
+                sendmessage.location = this.new_child_location;
+            }
+            else {
+                sendmessage.location = this.child_locas.filter((i) => i.location === this.child_location)[0].location;
             }
             if (this.mode === 0){
                 console.log(sendmessage);
@@ -77,10 +108,11 @@ const vm = new Vue({
                 });
             }
             else if (this.mode === 1){
+                console.log(sendmessage);
                 const pms = SendJSON("POST",`${serverHost}:8002/bookservice/modifybook`,sendmessage,token);
                 pms.then((value) => {
                     alert(value.message);
-                    history.go(0);
+                    history.go(-1);
                 },(reason) => {
                     alert(reason);
                 });
@@ -88,57 +120,40 @@ const vm = new Vue({
         },
     },
     computed:{
-        available1(){
-            return this.parent_category === -1;
-        },
-        available2(){
-            return this.child_category === -1;
-        },
         child_cates(){
             if (this.parent_category !== -1){
                 return this.cates.filter((i) => i.categoryId === this.parent_category)[0].children;
-            }
-            else{
+            } else{
                 this.child_category=-1;
                 return [];
             }
         },
-        rooms(){
-            let arr = [];
-            for (let i = 1;i <= 4;i++){
-                arr.push(`${this.area}-10${i}`);
+        child_locas() {
+            if (this.parent_location !== -1){
+                return this.locations?.filter((i) => i.location === this.parent_location)[0]?.children || [];
+            } else{
+                this.child_location=-1;
+                return [];
             }
-            if (this.area.length > 0){
-                this.loCation = arr[0];
-            }
-            return arr;
-        }
+        },
     },
     mounted(){
         this.mode = 0;
-        const pms = SendJSON("GET",`${serverHost}:8002/bookservice/getbookcategoryinfo`);
-        pms.then((value) => {
+        const pms1 = SendJSON("GET",`${serverHost}:8002/bookservice/getbookcategoryinfo`);
+        pms1.then((value) => {
             this.cates = value.data.parentCategories;
             if (required_isbn){
                 this.mode = 1;
-                let pms2 = SendJSON("GET",`${serverHost}:8002/bookservice/getbookinfobyisbn/${required_isbn}`);
-                pms2.then((value) => {
-                    this.isbn = value.data.bookInfo.isbn;
-                    this.bookdetail.bookname = value.data.bookInfo.bookName;
-                    this.bookdetail.author = value.data.bookInfo.author;
-                    this.bookdetail.price = value.data.bookInfo.bookPrice;
-                    this.bookdetail.publisher = value.data.bookInfo.publisher;
-                    this.location = value.data.bookInfo.location;
-                    this.total_number = value.data.bookInfo.bookNum;
-                    this.parent_category = value.data.bookInfo.parentId;
-                    this.child_category = value.data.bookInfo.categoryId;
-                });
-            }
-            else{
-
+                this.getBookInfo();
             }
         },(reason) => {
             console.error(reason);
         });
+        const pm2 = SendJSON("GET", `${serverHost}:8002/bookservice/getlocationinfo`);
+        pm2.then((value) => {
+            this.locations = value.data.parentLocations
+        },(reason) => {
+            console.error(reason);
+        })
     }
 });
