@@ -91,3 +91,10 @@ table tr:nth-child(2n){
     line-height: 74px;
     text-align: center;
 }
+
+.borrowed_books .report-item {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

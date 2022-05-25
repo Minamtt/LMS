@@ -7,6 +7,9 @@ const borrowedbooks = Vue.extend({
       list: [],
       available: true,
       btnstyle: "",
+      dialogVisible: false,
+      openIndex: -1,
+      bookStateName: ['Avaiable', 'Borrowed', 'Lost', 'Damaged']
     }
   },
   template: `
@@ -23,12 +26,13 @@ const borrowedbooks = Vue.extend({
                     <thead>
                     </thead>
                     <tbody>
-                        <th width="120">bookName</th>
+                        <th width="140">bookName</th>
                         <th width="120">CreateTime</th>
                         <th width="120">Due Time</th>
-                        <th width="120">State</th>
-                        <th width="120">Debt</th>
-                        <th width="120">operation</th>
+                        <th width="120">BorrowState</th>
+                        <th width="120">BookState</th>
+                        <th width="90">Debt</th>
+                        <th width="140">operation</th>
                         <tr v-for="(i,index) in list" v-if="showall || i.state < 10000">
                             <td>{{i.bookName}}</td>
                             <td>{{i.createTime}}</td>
@@ -36,25 +40,50 @@ const borrowedbooks = Vue.extend({
                             <td v-if="i.state >= 0 && i.state < 10000">Remain:{{i.state}}&nbsp;Days</td>
                             <td v-if="i.state >= 10000">Returned</td>
                             <td v-if="i.state < 0">Overdue:{{-i.state}}&nbsp;Days</td>
+                            <td>{{bookStateName[i.bookState]}}</td>
                             <td>￥{{i.debt.toFixed(2)}}</td>
                             <td>
-                                <button v-if="i.state >= 0 && i.state < 10000" class="continue" @click="conti(index)">
+                              <div v-if="i.state >= 0 && i.state < 10000 && (i.bookState <= 1 ||i.bookState >=4)">
+                                <button class="continue" @click="conti(index)">
                                     Continue
                                 </button>
                                 <button class="continue" @click="returnBook(index)">
                                     Return
                                 </button>
+                                <button class="continue" @click="openReport(index)">
+                                    Report
+                                </button>
+                              </div>
+                              <div v-if="i.bookState > 1 && i.bookState < 4">
+                                 <button class="continue" @click="payLostBook(index)">
+                                    PayLost
+                                 </button>
+                              </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
             </div>
             <button @click="paydebt()" :style="btnstyle" :disabled="!available">Pay fine</button>
         </div>
+        <el-dialog
+          title="report book problems"
+          :visible.sync="dialogVisible"
+          width="30%"
+        >
+          <div class="report-item">
+            <span>book lost</span>
+            <button class="continue" @click="reportLost">report</button>
+          </div>
+          <div class="report-item">
+            <span>book damaged</span>
+            <button class="continue" @click="reportDamaged">report</button>
+          </div>
+        </el-dialog>
         <div class="tip">
             Payment after confirmation!
         </div>
+        <div id="form"></div>
     </div>
     `,
   methods: {
@@ -70,14 +99,13 @@ const borrowedbooks = Vue.extend({
             createTime: i.createTime,
             dueTime: i.dueTime,
             state: i.state,
+            bookState: i.bookState,
             barcode: i.url
-            // debt:
           };
           item.debt = 0;
           if (item.state < 0) {
             item.debt = Math.max(0, -item.state);
           }
-
           this.list.push(item);
         }
       });
@@ -103,6 +131,43 @@ const borrowedbooks = Vue.extend({
       })
       // 导航到借书面板
       navTo('./scan_borrow.html', {menu: 'board'})
+    },
+    openReport(index) {
+      this.openIndex = index
+      this.dialogVisible = true
+    },
+    reportLost() {
+      this.setBookState(2)
+      this.dialogVisible = false
+      this.refresh()
+    },
+    reportDamaged() {
+      this.setBookState(3)
+      this.dialogVisible = false
+      this.refresh()
+    },
+    setBookState(state) {
+      const pms = SendJSON("GET", `${serverHost}:8002/bookservice/setbookstate/${this.list[this.openIndex].bookId}/${state}`, null, token);
+      pms.then((value) => {
+        alert(value.message);
+      }, (reason) => {
+        alert(reason);
+      })
+    },
+    payLostBook(index) {
+      const pms = SendJSON("GET", `${serverHost}:8004/pay/paylostbook/${this.list[index].bookId}`, null, token);
+      pms.then((value) => {
+        document.querySelector('#form').innerHTML = value.data.url
+        document.forms[0].setAttribute('target', '_blank')
+        document.forms[0].submit();
+        // alert(value.message);
+      }, (reason) => {
+        // TODO cors policy
+        alert(reason);
+      })
+    },
+    refresh() {
+      history.go(0)
     }
   },
   mounted() {
@@ -157,7 +222,7 @@ const board = Vue.extend({
     this.getScanMsg()
     this.getUserMsg()
     // 监听扫码事件
-    if(this.scanMsg) {
+    if (this.scanMsg) {
       new ScanCode(this.handleScan)
     }
   },
@@ -176,31 +241,31 @@ const board = Vue.extend({
       this.scanOK = true
     },
     handleSubmit() {
-      if(this.scanMsg.mode === 0) {
+      if (this.scanMsg.mode === 0) {
         this.borrowBook()
-      } else if(this.scanMsg.mode === 1) {
+      } else if (this.scanMsg.mode === 1) {
         this.returnBook()
       }
     },
     borrowBook() {
-      let pms = SendJSON("GET",`${serverHost}:8002/bookservice/borrowbook/${this.bookId}/${this.userMsg.userId}`,null,token);
+      let pms = SendJSON("GET", `${serverHost}:8002/bookservice/borrowbook/${this.bookId}/${this.userMsg.userId}`, null, token);
       pms.then((value) => {
         alert(value.message);
         localStorage.scanMsg = ''
         this.toBorrowed()
-      },(reason) => {
+      }, (reason) => {
         localStorage.scanMsg = ''
         this.toBorrowed()
         alert(reason);
       });
     },
     returnBook() {
-      let pms = SendJSON("GET",`${serverHost}:8002/bookservice/returnbook/${this.bookId}`,null,token);
+      let pms = SendJSON("GET", `${serverHost}:8002/bookservice/returnbook/${this.bookId}`, null, token);
       pms.then((value) => {
         alert(value.message);
         localStorage.scanMsg = ''
         this.toBorrowed()
-      },(reason) => {
+      }, (reason) => {
         localStorage.scanMsg = ''
         this.toBorrowed()
         alert(reason);
