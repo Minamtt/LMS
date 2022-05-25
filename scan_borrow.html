@@ -30,7 +30,10 @@
         <section class="borrowed" v-if="curIndex===0">
             <borrowedbooks></borrowedbooks>
         </section>
-        <section class="board" v-else>
+        <section class="reservation" v-if="curIndex===1">
+            <reservation-log></reservation-log>
+        </section>
+        <section class="board" v-if="curIndex===2">
             <board></board>
         </section>
     </article>
@@ -39,5 +42,8 @@
 <script src="./javascript/header.js"></script>
 <script src="./javascript/public.js"></script>
 <script src="./javascript/scancode.js"></script>
+<script src="./javascript/borrowedbooks.js"></script>
+<script src="./javascript/scanboard.js"></script>
+<script src="./javascript/reservation_log.js"></script>
 <script src="./javascript/scan_borrow.js"></script>
 </html>
