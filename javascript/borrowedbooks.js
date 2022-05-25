@@ -83,7 +83,7 @@ const borrowedbooks = Vue.extend({
       btnstyle: "",
       dialogVisible: false,
       openIndex: -1,
-      bookStateName: ['Avaiable', 'Borrowed', 'Lost', 'Damaged']
+      bookStateName: ['Normal', 'Borrowed', 'Lost', 'Damaged', 'Normal']
     }
   },
   methods: {

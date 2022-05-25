@@ -1,0 +1,18 @@
+.return_manage {
+
+}
+
+.content {
+    width: 1400px;
+    height: 800px;
+    background-color: white;
+    margin: 60px auto;
+    box-shadow: 2px 2px 18px rgb(36 36 36 / 60%);
+    padding: 20px 30px;
+    font-family: "sHeiTi",sans-serif;
+    position: relative;
+}
+
+.content>.title {
+    text-align: center;
+}
