@@ -38,6 +38,7 @@ var mainhead = Vue.extend({
                 <p class="h_w_username">{{username}}</p>
                 <p class="h_w_userinfo">ID:{{id}}</p>
                 <p class="h_w_userinfo">{{email}}</p>
+                <button class="h_w_exitbtn" v-if="status===1" onclick="location.href='./notification.html'">Notification</button>
                 <button class="h_w_exitbtn" v-if="status===1" onclick="location.href='./order.html'">My orders</button>
                 <button class="h_w_exitbtn" v-if="status===1" onclick="location.href='./change_password.html'">Change Password</button>
                 <button class="h_w_exitbtn" v-if="status===1" @click="logout">Log out</button>

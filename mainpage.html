@@ -37,9 +37,15 @@
                 </div>
             </div>
             <aside class="rightside">
-                <div class="news_container">
-                    <p style="font-size:30px;">Announcement</p>
-                    <p id="usermessage"><i class="fa" v-if="usermessage.length !== 0" style="margin-right: 6px;">&#xf0a1;</i>{{usermessage}}</p>
+                <div id="news_container" class="news_container">
+                    <p style="font-size:30px;">Notification</p>
+                    <hr/>
+                    <div class="msg" @click="toNotice">
+                        <p>You have</p>
+                        <p :class="{'warning': borrowDueNum !== 0}">{{borrowDueNum}} borrowed books in due</p>
+                        <p :class="{'warning': reserveDueNum !== 0}">{{reserveDueNum}} reserved books in due</p>
+                        <p :class="{'warning': fineDueNum !== 0}">{{fineDueNum}} fines to be paid</p>
+                    </div>
                 </div>
                 <div class="hot_container" id="hot_container">
                     <p style="font-size:30px;"><i class="fas fa-fire"></i>&emsp;Hot</p>

@@ -24,39 +24,6 @@ for (let i = 0;i < category_arrs.length;i++){
     }
 }
 
-// let pic_frame = 3;
-// let pic_urlarr = ["e.jpg","e2.jpg","e3.jpg","e4.jpg"];
-// let pic_dots = dots.getElementsByClassName("dot");
-// let pic_switch = function(){
-//     if (pic_frame < 3){
-//         pic_frame++;
-//     }
-//     else{
-//         pic_frame = 0;
-//     }
-//     if (pic_frame > 0){
-//         pic_dots[pic_frame-1].className = "dot";
-//         pic_dots[pic_frame].className = "dot dot_selected";
-//     }
-//     else{
-//         pic_dots[3].className = "dot";
-//         pic_dots[0].className = "dot dot_selected";
-//     }
-//     carousel_pic.src = `./img/${pic_urlarr[pic_frame]}`;
-// }
-// for (let i = 0;i < pic_dots.length;i++){
-//     pic_dots[i].onclick = function(){
-//         for (let j = 0;j < pic_dots.length;j++){
-//             pic_dots[j].className = "dot";
-//         }
-//         pic_dots[i].className = "dot dot_selected";
-//         pic_frame = i;
-//         carousel_pic.src = `./img/${pic_urlarr[pic_frame]}`;
-//         clearInterval(timer);
-//         timer = setInterval(pic_switch,2500);
-//     }
-// }
-// pic_switch();
 
 var hot_books = new Vue({
     el:"#hot_container",
@@ -154,15 +121,31 @@ var recommends = new Vue({
 });
 
 var usertip = new Vue({
-    el:"#usermessage",
+    el:"#news_container",
     data:{
-        usermessage:"",
+        usermessage: [],
     },
     mounted(){
-        let pms = SendJSON("GET",`${serverHost}:8002/bookservice/getReservationsInfo`,null,token);
+        let pms = SendJSON("GET",`${serverHost}:8002/bookservice/getNotification`,null,token);
         pms.then((value) => {
-            this.usermessage = value.data.reservationsInfo;
+            this.usermessage = value.data.notification;
         });
+    },
+    computed: {
+        borrowDueNum() {
+            return this.usermessage.filter((item, i) => item.state === 0).length
+        },
+        reserveDueNum() {
+            return this.usermessage.filter((item, i) => item.state === 1).length
+        },
+        fineDueNum() {
+            return this.usermessage.filter((item, i) => item.state === 2).length
+        }
+    },
+    methods: {
+        toNotice() {
+            navTo('./notification.html')
+        }
     }
 });
 
