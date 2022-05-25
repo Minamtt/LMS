@@ -11,7 +11,8 @@ var mainhead = Vue.extend({
     template:`
     <div>
         <div class="h_left_text">
-            
+            <i class="fas fa-home h_home"></i>
+            <span class="h_title">XIDIAN BOOKS</span>
         </div>
         <nav class="h_middle">
             <ul class="h_navitem">
