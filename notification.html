@@ -16,7 +16,7 @@
         <div class="msgs" v-if="notification.length">
             <div class="msg-item" @click="toBorrowed">
                 <p class="tip">Borrowed books in due:</p>
-                <p v-for="item in borrowDue">{{item.url}}</p>
+                <p v-for="item in borrowDue">{{item.msg}}</p>
                 <p v-if="!borrowDue.length">No borrowed dues</p>
             </div>
             <div class="msg-item" @click="toReserved">
@@ -26,7 +26,7 @@
             </div>
             <div class="msg-item" @click="toBorrowed">
                 <p class="tip">Fines to be paid:</p>
-                <p v-for="item in fineDue">{{item.url}}</p>
+                <p v-for="item in fineDue">{{item.msg}}</p>
                 <p v-if="!fineDue.length">No fines</p>
             </div>
         </div>
