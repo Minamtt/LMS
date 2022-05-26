@@ -7,7 +7,7 @@ const vm = new Vue({
         username:"",
         debt:"",
         list:[],
-        bookStateName: ['Normal', 'Borrowed', 'Lost', 'Damaged', 'Normal']
+        bookStateName: ['Available', 'Borrowed', 'Lost', 'Damaged', 'Paid']
     },
     methods:{
         returnBook(index) {

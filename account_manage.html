@@ -48,7 +48,7 @@
                         <td>{{bookStateName[i.bookState]}}</td>
                         <td>￥{{i.debt.toFixed(2)}}</td>
                         <td>
-                            <button class="update_btn" v-if="i.state < 10000 && (i.bookState === 2 || i.bookState === 3)" @click="returnBook(index)">return</button>
+                            <button class="update_btn" v-if="i.state < 10000 && (i.bookState >= 1 || i.bookState <= 3)" @click="returnBook(index)">return</button>
                         </td>
                     </tr>
                 </tbody>
