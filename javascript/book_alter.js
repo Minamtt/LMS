@@ -24,6 +24,9 @@ const vm = new Vue({
         mode:0  //0 -> add， 1 -> update
     },
     methods:{
+        handleScan(isbn) {
+            this.isbn = isbn
+        },
         checkISBN(){
             let pms = SendJSON("GET",`${serverHost}:8002/bookservice/getbookinfobyisbn/${this.isbn}`);
             pms.then((value) => {
@@ -122,7 +125,7 @@ const vm = new Vue({
     computed:{
         child_cates(){
             if (this.parent_category !== -1){
-                return this.cates.filter((i) => i.categoryId === this.parent_category)[0].children;
+                return this.cates.filter((i) => i.categoryId === this.parent_category)[0]?.children || [];
             } else{
                 this.child_category=-1;
                 return [];
@@ -155,5 +158,10 @@ const vm = new Vue({
         },(reason) => {
             console.error(reason);
         })
+
+        // 如果是添加图书，增加扫码监听
+        if(this.mode === 0) {
+            new ScanCode(this.handleScan)
+        }
     }
 });
