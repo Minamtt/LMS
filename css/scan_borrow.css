@@ -1,0 +1,16 @@
+.scan_borrow {
+    display: flex;
+}
+
+.side_menu {
+    flex: none;
+    width: 250px;
+}
+
+.content {
+    flex: auto;
+}
+
+.board {
+
+}

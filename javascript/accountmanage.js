@@ -7,16 +7,17 @@ const vm = new Vue({
         username:"",
         debt:"",
         list:[],
+        bookStateName: ['Available', 'Borrowed', 'Lost', 'Damaged', 'Paid']
     },
     methods:{
-        retu(index){
-            const pms = SendJSON("GET",`${serverHost}:8002/bookservice/returnbook/${this.list[index].bookId}/${this.uid}`,null,token);
-            pms.then((value) => {
-                alert(value.message);
-                this.getBorrowedBooks();
-            },(reason) => {
-                alert(reason);
+        returnBook(index) {
+            // 保存书籍二维码
+            localStorage.scanMsg = JSON.stringify({
+                mode: 1,
+                barcode: this.list[index].barcode
             })
+            // 导航到借书面板
+            navTo('./return_manage.html')
         },
         current_change(e){
             this.getBorrowedBooks(e);
@@ -35,7 +36,9 @@ const vm = new Vue({
                         bookName:i.bookName,
                         createTime:i.createTime,
                         dueTime:i.dueTime,
-                        state:Number.parseInt(i.state)
+                        state:Number.parseInt(i.state),
+                        bookState: i.bookState,
+                        barcode: i.url
                     };
                     item.debt = 0;
                     item.debt = 0;

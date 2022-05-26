@@ -32,23 +32,24 @@
                     <th>CreateTime</th>
                     <th>Due Time</th>
                     <th>State</th>
+                    <th>BookState</th>
                     <th>Debt</th>
                     <th>operation</th>
                 </thead>
                 <tbody>
                     <tr v-for="(i,index) in list">
-                            <td>{{i.borrowId}}</td>
-                            <td>{{i.bookName}}</td>
-                            <td>{{i.createTime}}</td>
-                            <td>{{i.dueTime}}</td>
-                            <td v-if="i.state >= 10000">Returned</td>
-                            <td v-if="i.state >= 0 && i.state < 10000">Remain:{{i.state}} Days</td>
-                            <td v-if="i.state < 0">overdue:{{-i.state}}  Days</td>
-                            <td>￥{{i.debt.toFixed(2)}}</td>
-                            <td>
-                                <button class="update_btn" v-if="i.state < 10000" @click="retu(index)">return</button>
-                                <!-- <button class="delete_btn" @click="deleteUser(index)">Delete user</button> -->
-                            </td>
+                        <td>{{i.borrowId}}</td>
+                        <td>{{i.bookName}}</td>
+                        <td>{{i.createTime}}</td>
+                        <td>{{i.dueTime}}</td>
+                        <td v-if="i.state >= 10000">Returned</td>
+                        <td v-if="i.state >= 0 && i.state < 10000">Remain:{{i.state}} Days</td>
+                        <td v-if="i.state < 0">overdue:{{-i.state}}  Days</td>
+                        <td>{{bookStateName[i.bookState]}}</td>
+                        <td>￥{{i.debt.toFixed(2)}}</td>
+                        <td>
+                            <button class="update_btn" v-if="i.state < 10000 && (i.bookState >= 1 || i.bookState <= 3)" @click="returnBook(index)">return</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -43,7 +43,7 @@ var vm = new Vue({
                             window.location.href = "./mainpage.html";
                         }
                         else{
-                           pop_up_tip(received.message,0); 
+                           pop_up_tip(received.message,0);
                         }
                     }
                     else

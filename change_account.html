@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Account</title>
+    <link rel="stylesheet" href="css/change_account.css">
+    <link rel="stylesheet" href="./css/effects.css">
+    <link rel="stylesheet" href="./lib/index.css">
+    <script src="./lib/vue2.js"></script>
+    <script src="./javascript/public.js"></script>
+    <script src="./lib/index.js"></script>
+</head>
+<body>
+<div id="new_pwd">
+    <p id="title_1">Modify {{modify}}</p>
+    <select name="modify" id="modify" v-model="modify">
+        <option v-for="item in modifyArr" :value="item">{{item}}</option>
+    </select>
+    <div class="verify_code" v-if="post_able" @click="post_code">
+        Send verify code
+    </div>
+    <div class="verify_code" v-else="post_able">
+        Verify code is valid in {{time_counter}} seconds
+    </div>
+    <form action="#" method="post" name="form">
+        <table>
+            <tr>
+                <td><p><font color="red">*</font>Username:</p></td>
+                <td><input type="text" id="_username" v-model="username" autocomplete="off"
+                           placeholder="input username"/></td>
+            </tr>
+            <tr v-if="modify === 'password'">
+                <td><p><font color="red">*</font>E-mail:</p></td>
+                <td><input type="text" id="_email" v-model="email" autocomplete="off" placeholder="input E-mail"/></td>
+            </tr>
+            <tr v-if="modify === 'email'">
+                <td><p><font color="red">*</font>New E-mail:</p></td>
+                <td><input type="text" id="nemail" name="nemail" v-model="email" placeholder="input new E-mail"/>
+                </td>
+            </tr>
+            <tr v-if="modify === 'email'">
+                <td><p><font color="red">*</font>password:</p></td>
+                <td><input type="password" id="pwd" name="pwd" v-model="pwd" placeholder="input password"/>
+                </td>
+            </tr>
+            <tr v-if="modify === 'password'">
+                <td><p><font color="red">*</font>New password:</p></td>
+                <td><input type="password" id="npwd" name="npwd" v-model="pwd" placeholder="input new password"/>
+                </td>
+            </tr>
+            <tr>
+                <td><p><font color="red">*</font>Verify code:</p></td>
+                <td><input type="text" id="_code" v-model="verify_code" placeholder="input verify code"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" id="submit_form" @click="submit" value="OK"/>
+                </td>
+                <td></td><td></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+<script src="./javascript/effects.js"></script>
+<script src="javascript/change_account.js"></script>
+</html>

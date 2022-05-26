@@ -24,16 +24,19 @@ ul,ol,li,hr{
     width:720px;
     height:625px;
     float: left;
+    position: relative;
 }
 .carousel{
     width: 618px;
     height: 604px;
-    margin-left: 64px;
-    margin-top: 21px;
+    margin-top: 15px;
     background-color: bisque;
     position:absolute;
     z-index:1;
+    left: 50%;
+    transform: translateX(-50%);
 }
+
 .rightside{
     width:300px;
     height:625px;
@@ -42,13 +45,12 @@ ul,ol,li,hr{
     font-family: "sHeiTi",sans-serif;
 }
 
-
 .category_list_container{
-    padding-left: 7px;
     position: relative;
+    border:1px solid #c6c7c7;
 }
+
 .category_list li{
-    width: 208px;
     height: 92px;
     background-color: #ECF0F0;
     list-style-type: none;
@@ -112,7 +114,6 @@ ul,ol,li,hr{
     background-color: rgb(223, 223, 223);
     cursor: pointer;
 }
-
 .news_container,.hot_container{
     user-select: none;
     padding-left: 12px;
@@ -122,8 +123,19 @@ ul,ol,li,hr{
     overflow: hidden;
 }
 .news_container{
-    height: 164px;
+    height: 200px;
     padding-top: 14px;
+}
+.news_container .msg {
+    padding: 15px 0;
+    font-size: 18px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.news_container .msg:hover {
+}
+.news_container .msg .warning {
+    color: red;
 }
 .news_list li{
     margin-left: 20px;
@@ -132,7 +144,7 @@ ul,ol,li,hr{
 }
 .hot_container{
     padding-top: 14px;
-    margin-top: 28px;
+    margin-top: 18px;
     height: 377px;
 }
 .hot_list a{
@@ -242,8 +254,4 @@ ul,ol,li,hr{
     padding-left: 20px;
     font-size: 15px;
     line-height: 25px;
-}
-#usermessage{
-    color:red;
-
 }

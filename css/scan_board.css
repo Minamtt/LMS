@@ -1,0 +1,41 @@
+.scan_board {
+    padding: 50px 200px;
+    min-height: 75vh;
+}
+
+.scan_board .title {
+    font-size: 22px;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+
+.scan_board .msg {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin: 20px 0;
+}
+
+.scan_board .msg .input {
+    width: 500px;
+    margin-right: 20px;
+}
+
+.scan_board .code-board {
+    width: 70%;
+    height: 250px;
+    margin-top: 50px;
+}
+
+.scan_board .placement {
+    box-sizing: border-box;
+    height: 100%;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 40px;
+}
+
+.scan_board .code-board .barcode {
+    width: 100%;
+    height: 100%;
+}

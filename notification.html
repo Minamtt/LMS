@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/notification.css">
+    <title>Notification</title>
+    <script src="./lib/vue2.js"></script>
+    <script src="./javascript/public.js"></script>
+</head>
+<body style="background-color: #ECF1F2;">
+    <main id="notification" class="notification">
+        <p class="title">Notifications</p>
+        <div class="msgs" v-if="notification.length">
+            <div class="msg-item" @click="toBorrowed">
+                <p class="tip">Notifications of borrowed books:</p>
+                <p v-for="item in borrowDue">{{item.msg}}</p>
+                <p v-if="!borrowDue.length">No borrowed notifications</p>
+            </div>
+            <div class="msg-item" @click="toReserved">
+                <p class="tip">Notifications of reserved books:</p>
+                <p v-for="item in reserveDue">{{item.msg}}</p>
+                <p v-if="!reserveDue.length">No reserved notifications</p>
+            </div>
+            <div class="msg-item" @click="toBorrowed">
+                <p class="tip">Fines to be paid:</p>
+                <p v-for="item in fineDue">{{item.msg}}</p>
+                <p v-if="!fineDue.length">No fines</p>
+            </div>
+        </div>
+        <div class="placeholder" v-else>
+            No Messages
+        </div>
+    </main>
+</body>
+<script src="./javascript/notification.js"></script>
+</html>

@@ -34,13 +34,13 @@ const vm = new Vue({
         },
         borrowBook(){
             if (this.button_available){
-                let pms = SendJSON("GET",`${serverHost}:8002/bookservice/borrowbook/${this.selected}`,null,token);
-                pms.then((value) => {
-                    alert(value.message);
-                    this.getBookDetail();
-                },(reason) => {
-                    alert(reason);
-                });
+                // 保存书籍二维码
+                localStorage.scanMsg = JSON.stringify({
+                    mode: 0,
+                    barcode: this.selection[this.selection.findIndex((item) => item.value === this.selected)].barcode
+                })
+                // 导航到借书面板
+                navTo('./scan_borrow.html', {menu: 'board'})
             }
         },
         getEachBooks(){
@@ -50,6 +50,7 @@ const vm = new Vue({
                 for (let i of value.data.booklist){
                     let _book = {
                         value:i.bookId,
+                        barcode: i.url,
                         label:i.bookId
                     }
                     this.selection.push(_book);
@@ -77,6 +78,9 @@ const vm = new Vue({
                 this.getEachBooks();
             });
         }
+    },
+    computed: {
+
     },
     mounted(){
         if (!token){

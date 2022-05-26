@@ -8,7 +8,7 @@ var mainhead = Vue.extend({
             id:"",
             status:0,
             styles:["","",""],
-            hrefs:["./mainpage.html","./categories.html","./reservation_log.html"],
+            hrefs:["./mainpage.html","./categories.html","./scan_borrow.html"],
             search_for:""
         }
     },
@@ -24,11 +24,11 @@ var mainhead = Vue.extend({
             <ul class="h_navitem">
                 <li><a :style="styles[0]" :href="hrefs[0]">Home</a></li>
                 <li><a :style="styles[1]" :href="hrefs[1]">Categories</a></li>
-                <li><a :style="styles[2]" :href="hrefs[2]">Reservations</a></li>
+                <li><a :style="styles[2]" :href="hrefs[2]">Borrow</a></li>
             </ul>
         </nav>
         <div class="h_search">
-            <input type="text" class="h_searchbar" placeholder="javascript" v-model="search_for" @keydown.enter="search" />
+            <input type="text" class="h_searchbar" placeholder="bookname or isbn" v-model="search_for" @keydown.enter="search" />
             <div class="h_searchbutton" @click="search">
                 <i class="fas fa-search" ></i>
             </div>
@@ -38,11 +38,11 @@ var mainhead = Vue.extend({
                 <p class="h_w_username">{{username}}</p>
                 <p class="h_w_userinfo">ID:{{id}}</p>
                 <p class="h_w_userinfo">{{email}}</p>
-                <button class="h_w_exitbtn" v-if="status===1" onclick="location.href='./borrowedbooks.html'">Borrowed Books</button>
+                <button class="h_w_exitbtn" v-if="status===1" onclick="location.href='./notification.html'">Notification</button>
                 <button class="h_w_exitbtn" v-if="status===1" onclick="location.href='./order.html'">My orders</button>
-                <button class="h_w_exitbtn" v-if="status===1" onclick="location.href='./change_password.html'">Change Password</button>
+                <button class="h_w_exitbtn" v-if="status===1" onclick="location.href='./change_account.html'">Change Account</button>
                 <button class="h_w_exitbtn" v-if="status===1" @click="logout">Log out</button>
-                <button class="h_w_exitbtn" v-if="status===0" onclick="location.href='./index.html'">Log in</button>
+                <button class="h_w_exitbtn" v-if="status===0" onclick="location.href='./scan_login.html'">Log in</button>
             </div>
             <i class="fas fa-user"></i>
         </div>
@@ -52,7 +52,7 @@ var mainhead = Vue.extend({
         logout(){
             let now = new Date();
             document.cookie = `token='';expires=${now.toGMTString()};`;
-            window.location.href = "./index.html";
+            window.location.href = "./scan_login.html";
         },
         search(){
             location.href = `./categories.html?search=${decodeURI(this.search_for)}`;
@@ -67,7 +67,7 @@ var mainhead = Vue.extend({
             this.styles[1] = "color:red";
             this.hrefs[1] = "javascript:;";
         }
-        else if (location.href.includes("reservation")){
+        else if (location.href.includes("scan_borrow")){
             this.styles[2] = "color:red";
             this.hrefs[2] = "javascript:;";
         }
@@ -80,6 +80,7 @@ var mainhead = Vue.extend({
                 }
                 this.email = value.data.userInfo.mail;
                 this.id = value.data.userInfo.userId;
+
             },(reason) =>{
                 this.username = "User";
                 this.email = "";

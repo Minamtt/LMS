@@ -1,0 +1,45 @@
+.notification {
+    width: 1000px;
+    margin: 70px auto;
+}
+
+.title {
+    height: 30px;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    margin: 0px;
+    margin-bottom: 25px;
+}
+
+.msgs,
+.placeholder {
+    min-height: 500px;
+    border:1px solid #c6c7c7;
+}
+
+.placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.msgs {
+    box-sizing: border-box;
+    padding: 25px 65px;
+}
+
+.msgs .msg-item {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.msgs .msg-item .tip {
+    font-size: 20px;
+}
+
+.msgs .msg-item>p:not(.tip) {
+    color: orange;
+}
+
