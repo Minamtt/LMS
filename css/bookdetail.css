@@ -1,0 +1,81 @@
+.main_container{
+    padding: 1px;
+}
+.book_container{
+    width: 1040px;
+    height: 403px;
+    border: 1px solid #CED0D0;
+    background-color: #ECF1F2;
+    margin:102px auto 47px auto;
+    font-family: "sHeiTi", sans-serif;
+    user-select: none;
+    overflow: hidden;
+}
+.cover_img{
+    float:left;
+    width:317px;
+    height:100%;
+    border-right: 1px solid #CED0D0;
+}
+.right_bar{
+    float:left;
+    width: calc(100% - 319px);
+    height:100%;
+    /* background-color: aquamarine; */
+}
+.book_name,.book_func{
+    width: calc(100% - 37px);
+    padding-left: 37px;
+}
+.book_name{
+    padding-top: 13px;
+    height:76px;
+    border-bottom: 1px solid #CED0D0;
+}
+.book_name div{
+    float: left;
+    font-size:14px;
+    line-height:24px;
+}
+.book_func{
+    padding-top: 24px;
+    height: 100px;
+    border-bottom: 1px solid #CED0D0;
+}
+.book_price_container {
+    width: 100%;
+    font-size: 18px;
+    /* background-color: bisque; */
+}
+.book_container div{
+    float: left;
+}
+.btns button{
+    font-size: 14px;
+    font-family: "sHeiTi";
+    color:white;
+    width: 112px;
+    height: 40px;
+    background-color: #48BEEA;
+    border: none;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+.btns button:hover{
+    cursor: pointer;
+}
+.bar_code{
+    margin-top: 10px;
+    width: 240px;
+    height: 50px;
+    float:right;
+    margin-right: 60px;
+}
+.book_desc{
+    padding:20px 37px 0px 37px;
+    width: calc(100% - 74px);
+    height: 146px;
+    font-size: 14px;
+    word-wrap: break-word;
+    overflow: hidden;
+}

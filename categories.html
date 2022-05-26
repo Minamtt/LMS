@@ -16,36 +16,7 @@
 </head>
 <body style="background-color:#EBEBEB;">
     <header id="header">
-        <div class="h_left_text">
-            <div>
-                <i class="fas fa-home h_home"></i>
-                <span class="h_title">XIDIAN BOOKS</span>
-            </div>
-        </div>
-        <nav class="h_middle">
-            <ul class="h_navitem">
-                <li><a  href="mainpage.html">Home</a></li>
-                <li><a style="color:red;" href="javascript:;">Categories</a></li>
-                <li><a href="javascript:;">Logs</a></li>
-            </ul>
-        </nav>
-        <div class="h_search">
-            <input type="text" class="h_searchbar" placeholder="javascript" v-model="search_for" @keydown.enter="search"/>
-            <div class="h_searchbutton" @click="search">
-                <i class="fas fa-search" ></i>
-            </div>
-        </div>
-        <div class="h_user">
-            <div class="h_slipwindow">
-                <p class="h_w_username">{{username}}</p>
-                <p class="h_w_userinfo">ID:{{id}}</p>
-                <p class="h_w_userinfo">{{email}}</p>
-                <p class="h_w_userinfo">Student</p>
-                <button class="h_w_exitbtn" onclick="location.href='./change_password.html'">Change Password</button>
-                <button class="h_w_exitbtn" @click="logout">Log out</button>
-            </div>
-            <i class="fas fa-user"></i>
-        </div>
+        <mainhead class="header"></mainhead>
     </header>
     <div id="main_container">
         <nav class="cate_nav">
@@ -57,112 +28,50 @@
             <nav class="right">
                 <div class="cate_bar">
                     <ul class="cate_list">
-                        <li class="selected"><a href="javascript:;">all</a></li>
-                        <li ><a href="javascript:;">Education</a></li>
-                        <li><a href="javascript:;">Novel</a></li>
-                        <li><a href="javascript:;">Sociology</a></li>
-                        <li><a href="javascript:;">Economics</a></li>
-                        <li><a href="javascript:;">Arts</a></li>
+                        <!-- class="selected" -->
+                    <div v-for="(i,index) in cates1">
+                        <li v-if="index === cate1_pointer" class="selected" >{{i}}</li>
+                        <li v-else="index !== cate1_pointer" @click="changeCate1(index)">{{i}}</li>
+                    </div>
                     </ul>
                 </div>
                 <div class="cate_bar" style="border-top:1px solid #C6C6C6; border-bottom:1px solid #C6C6C6;">
                     <div class="cate_bar">
                         <ul class="cate_list">
-                            <li class="selected"><a href="javascript:;">all</a></li>
-                            <li><a href="javascript:;">novel</a></li>
-                            <li><a href="javascript:;">novel</a></li>
-                            <li><a href="javascript:;">novel</a></li>
-                            <li><a href="javascript:;">novel</a></li>
-                            <li><a href="javascript:;">novel</a></li>
-                            <li><a href="javascript:;">novel</a></li>
-                            <li><a href="javascript:;">other</a></li>
+                            <div v-for="(i,index) in cates2">
+                                <li v-if="index === cate2_pointer" class="selected">{{i}}</li>
+                                <li v-if="index !== cate2_pointer" @click="changeCate2(index)">{{i}}</li>
+                            </div>
                         </ul>
                     </div>
                 </div>
                 <div class="cate_bar">
                     <div class="cate_bar">
                         <ul class="cate_list">
-                            <li class="selected"><a href="javascript:;">all</a></li>
+                            <li class="selected"><a href="javascript:;">none</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </nav>
         <section class="books_container">
-            <div class="book">
-                <img class="cover_pic" src="" alt="">
-                <div class="book_detail">
-                    <div class="book_detail_title">Yuri is master!</div>
+            <h1 v-if="books.length === 0" style="text-align: center;">NO BOOK</h1>
+            <div class="book" v-for="(i,index) in books">
+                <img class="cover_pic" :src="i.img_url" alt="">
+                <div class="book_detail" >
+                    <div class="book_detail_title">{{i.bookname}}</div>
                     <hr>
                     <div class="book_detail_team">
-                        <p>team</p>
-                        <button>detail</button>
+                        <p>{{i.author}}</p>
+                        <button @click="getBookDetail(index)">detail</button>
                     </div>
-                    <div class="book_detail_text">Be one with Yuri! Be one with Yuri! Be one with Yuri!</div>
-                </div>
-            </div>
-            <div class="book">
-                <img class="cover_pic" src="" alt="">
-                <div class="book_detail">
-                    <div class="book_detail_title">12345678asd</div>
-                    <hr>
-                    <div class="book_detail_team">
-                        <p>team</p>
-                        <button>detail</button>
-                    </div>
-                    <div class="book_detail_text">Be one with Yuri! Be one with Yuri! Be one with Yuri!</div>
-                </div>
-            </div>
-            <div class="book">
-                <img class="cover_pic" src="" alt="">
-                <div class="book_detail">
-                    <div class="book_detail_title">12345678asd</div>
-                    <hr>
-                    <div class="book_detail_team">
-                        <p>team</p>
-                        <button>detail</button>
-                    </div>
-                    <div class="book_detail_text">Be one with Yuri! Be one with Yuri! Be one with Yuri!</div>
-                </div>
-            </div>
-            <div class="book">
-                <img class="cover_pic" src="" alt="">
-                <div class="book_detail">
-                    <div class="book_detail_title">12345678asd</div>
-                    <hr>
-                    <div class="book_detail_team">
-                        <p>team</p>
-                        <button>detail</button>
-                    </div>
-                    <div class="book_detail_text">Be one with Yuri! Be one with Yuri! Be one with Yuri!</div>
-                </div>
-            </div>
-            <div class="book">
-                <img class="cover_pic" src="" alt="">
-                <div class="book_detail">
-                    <div class="book_detail_title">12345678asd</div>
-                    <hr>
-                    <div class="book_detail_team">
-                        <p>team</p>
-                        <button>detail</button>
-                    </div>
-                    <div class="book_detail_text">Be one with Yuri! Be one with Yuri! Be one with Yuri!</div>
-                </div>
-            </div>
-            <div class="book">
-                <img class="cover_pic" src="" alt="">
-                <div class="book_detail">
-                    <div class="book_detail_title">12345678asd</div>
-                    <hr>
-                    <div class="book_detail_team">
-                        <p>team</p>
-                        <button>detail</button>
-                    </div>
-                    <div class="book_detail_text">Be one with Yuri! Be one with Yuri! Be one with Yuri!</div>
+                    <div class="book_detail_text">{{i.description}}</div>
                 </div>
             </div>
             <div class="pages">
                 <el-pagination
+                :current-page.sync="currentPage"
+                @current-change="current_change"
                 background
                 layout="prev, pager, next"
                 :total="pages_total*10" style="margin:0px auto;">

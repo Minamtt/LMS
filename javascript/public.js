@@ -20,7 +20,7 @@ function SendJSON(method,url,Send,token){
         if (token){
             xhr.setRequestHeader("token",token);
         }
-        if (method === "GET"){
+        if (method === "GET" || method === "DELETE"){
             xhr.send();
         }
         else if (method === "POST"){
@@ -34,11 +34,11 @@ function SendJSON(method,url,Send,token){
                         resolve(received);
                     }
                     else{
-                        reject(received.code);
+                        reject(received.message);
                     }
                 }
                 else{
-                    reject(xhr.status);
+                    reject("StateCode:" + xhr.status);
                 }
             }
         }
@@ -55,3 +55,5 @@ function getQueryVariable(variable)
     }
     return undefined;
 }
+
+const serverHost = "http://47.108.137.135";

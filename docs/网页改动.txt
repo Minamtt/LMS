@@ -1,0 +1,44 @@
+barcodes
+{
+    新增
+}
+
+book_alter
+{
+    新增位置信息
+}
+
+book_manage
+{
+    detail入口
+}
+
+bookdetail
+{
+    新增选择框
+}
+
+borrowedbooks
+{
+    添加State和Debts
+}
+
+detail_manage
+{
+    新增
+}
+
+order_manage
+{
+    新增
+}
+
+register
+{
+    功能更改
+}
+
+user_manage
+{
+    添加功能
+}

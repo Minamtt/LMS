@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="./lib/vue2.js"></script>
+    <script src="./javascript/public.js"></script>
     <title>Log in</title>
     <link rel="stylesheet" href="./css/effects.css">
     <link rel="stylesheet" href="./fa/css/all.css">
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-    <div class="maincontainer">
+    <div class="maincontainer" >
         <div class="leftcontainer">
             <div class="decoratetxt">
                 <div class="icon-home">
@@ -30,8 +31,11 @@
             </div>
         </div>
         <div class="rightcontainer">
-            <div class="logincontainer" id="logincontainer">
-                <p style="font-size:30px">登录</p>
+            <div class="logincontainer" id="logincontainer" @keydown.enter="post">
+                <p style="font-size:30px">
+                    登录
+                    <!-- <a title="进入管理员登录页面" href="./adm_login.html" class="adm_entry">admin <i class="fas fa-chevron-right"></i></a> -->
+                </p>
                 <p style="font-size:18px; ">LOGIN</p>
                 <p style="font-size:12px; height:13px; color:red; margin-top:8px; margin-left:6px;">{{tipMessage}}</p>
                 <form>
@@ -39,10 +43,10 @@
                         <div class="smallicon">
                             <i class="fas fa-user" style="font-size:24px;"></i>
                         </div>
-                        <input class="ipt" type="text" v-model="username" placeholder="input username">
+                        <input class="ipt" type="text" v-model="username" placeholder="input userID">
                     </div>
                     <div class="inputbar">
-                        <div class="smallicon">
+                       <div class="smallicon">
                             <i class="fas fa-lock" style="font-size:24px;"></i>
                         </div>
                         <input class="ipt" id="password"  type="password" v-model="password" placeholder="input password">
@@ -50,10 +54,9 @@
                             <i class="fas fa-eye-slash" style="font-size:24px;"></i>
                         </div>
                     </div>
-                    <input class="btn01" type="button" @click="post" value="LOG&emsp;IN">
+                    <input class="btn01" type="button" @click="post"  value="LOG&emsp;IN">
                 </form>
-                <a class="login-link" href="./register.html" target="blank" style="margin-left:30px;">register</a>
-                <a class="login-link" href="./change_password.html" target="blank" style="float:right; margin-right:30px;">retrieve password</a>
+                <a class="login-link" href="./change_password.html" target="blank" style="float:right; margin-right:100px;">retrieve password</a>
             </div>
         </div>
     </div>

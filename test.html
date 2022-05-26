@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./javascript/public.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let data = "";
+    function deal(str){
+        str = str.replace(`\"`,`"`);
+        str = str.replace(`\n`,``);
+        return str;
+    }
+    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib29rIiwiaWF0IjoxNjUxNjU1NTY1LCJleHAiOjE2NTE3NDE5NjUsInVpZCI6IjYiLCJuaWNrbmFtZSI6IjYifQ.PKUhzc4okv534Zsl2Hqyd2DTQ1uMB6rK7OhiHKT5w5U";
+    const pms = SendJSON("GET",`${serverHost}:8004/pay/paydebt`,null,token);
+    pms.then((value) => {
+        console.log(value);
+        data = value.data.url;
+        console.log(deal(data));
+    },(reason) => {
+        console.error(reason);
+    });
+</script>
+</html>

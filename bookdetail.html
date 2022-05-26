@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main_head.css"> 
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/bookdetail.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <link rel="stylesheet" href="./lib/index.css">
+    <script type="text/javascript" src="./lib/vue2.js"></script>
+    <script src="./lib/index.js"></script>
+    <script src="./javascript/public.js"></script>
+    <title>Book Detail</title>
+</head>
+<body style="background-color:#EBEBEB;">
+    <header id="header">
+        <mainhead class="header"></mainhead>
+    </header>
+    <div class="main_container" id="main_container">
+        <section class="book_container">
+            <img class="cover_img" :src="book.img_src"/>
+            <div class="right_bar">
+                <div class="book_name">
+                    <p style="font-size:26px">{{book.bookname}}</p>
+                        <div style="width:310px; height: 24px; overflow: hidden; text-overflow: ellipsis;">Author:{{book.author}}</div>
+                        <div>Publisher:{{book.publisher}}</div>
+                </div>
+                <div class="book_func">
+                    <div class="book_price_container">
+                        <div style="width:140px;">Price:{{Number(book.price).toFixed(2)}}￥</div>
+                        <div style="width:290px;">Total number of books: {{book.total}}</div>
+                    </div>
+                    <div class="btns">
+                        <el-select style="margin-top: 10px; margin-right: 20px;" v-model="selected" placeholder="please select bookId">
+                            <el-option
+                              v-for="item in selection"
+                              :key="item.value"
+                              :label="item.label"
+                              :value="item.value">
+                            </el-option>
+                        </el-select>
+                        <button :style="button_style" @click="subscribe()">Subscribe</button>
+                        <button :style="button_style" @click="borrowBook()">Borrow</button>
+                    </div>
+                </div>
+                <div class="book_desc">
+                    ISBN: {{book.isbn}}<br>
+                    Categories: {{book.cate0}}/{{book.cate1}}<br>
+                    Location:{{book.location}}<br>
+                    Description: {{book.description}}<br>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <h2>Library Managment System</h2><br/>
+        <h2>2022.04</h2>
+    </footer>
+</body>
+<script src="./javascript/header.js"></script>
+<script src="./javascript/bookdetail.js"></script>
+</html>

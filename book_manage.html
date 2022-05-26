@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main_head.css">
+    <link rel="stylesheet" href="./css/manage_pages.css">
+    <link rel="stylesheet" href="./css/book_manage.css">
+    <link rel="stylesheet" href="./lib/index.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <script src="./javascript/public.js"></script>
+    <script type="text/javascript" src="./lib/vue2.js"></script>
+    <script src="./lib/index.js"></script>
+    <title>Book Management</title>
+</head>
+<body style="background-color: #F4E080;">
+    <header id="header">
+        <mainhead class="header"></mainhead>
+    </header>
+    <div id="main_container">
+        <el-dialog title="Barcode" :visible.sync="dialogTableVisible">
+            <img :src="barcode" alt="" width="620" height="240">
+        </el-dialog>
+        <h1>Book Management</h1>
+        <div class="functions">
+            <div class="search-bar">
+                <input type="text" v-model="search_for" placeholder="enter bookname" @keydown.enter="search()"></input>
+                <div class="search_btn" @click="search()" >search</div>
+            </div>
+            <button class="add_book_btn" onclick="location.href = './book_alter.html'">add book</button>
+        </div>
+        <div class="table_container">
+            <table cellspacing="2">
+                <thead>
+                    <th>ISBN</th>
+                    <th>Name</th>
+                    <th>price</th>
+                    <th>author</th>
+                    <th>category</th>
+                    <th>number</th>
+                    <th>operations</th>
+                </thead>
+                <tbody>
+                    <tr v-for="(i,index) in list" v-if="i.number !== 0">
+                        <td>{{i.isbn}}</td>
+                        <td>{{i.bookname}}</td>
+                        <td>{{i.price.toFixed(2)}}</td>
+                        <td>{{i.author}}</td>
+                        <td>{{i.category}}</td>
+                        <td>{{i.number}}</td>
+                        <td>
+                            <button class="update_btn" @click="viewBarcode(index)">Barcode</button>
+                            <button class="update_btn" @click="viewDetail(index)">Detail</button>
+                            <button class="update_btn" @click="updatebook(index)">Update</button>
+                            <button class="delete_btn" @click="deletebook(index)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pages">
+            <el-pagination
+                :current-page.sync="currentPage"
+                @current-change="current_change"
+                background
+                layout="prev, pager, next"
+                :total="pages_total*10" style="margin:0px auto;">
+            </el-pagination>
+        </div>
+    </div>
+</body>
+<script src="./javascript/header_adm.js"></script>
+<script src="./javascript/bookmanage.js"></script>
+</html>

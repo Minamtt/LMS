@@ -24,114 +24,103 @@ for (let i = 0;i < category_arrs.length;i++){
     }
 }
 
-let pic_frame = 3;
-let pic_urlarr = ["e.jpg","e2.jpg","e3.jpg","e4.jpg"];
-let pic_dots = dots.getElementsByClassName("dot");
-let pic_switch = function(){
-    if (pic_frame < 3){
-        pic_frame++;
-    }
-    else{
-        pic_frame = 0;
-    }
-    if (pic_frame > 0){
-        pic_dots[pic_frame-1].className = "dot";
-        pic_dots[pic_frame].className = "dot dot_selected";
-    }
-    else{
-        pic_dots[3].className = "dot";
-        pic_dots[0].className = "dot dot_selected";
-    }
-    carousel_pic.src = `./img/${pic_urlarr[pic_frame]}`;
-}
-for (let i = 0;i < pic_dots.length;i++){
-    pic_dots[i].onclick = function(){
-        for (let j = 0;j < pic_dots.length;j++){
-            pic_dots[j].className = "dot";
-        }
-        pic_dots[i].className = "dot dot_selected";
-        pic_frame = i;
-        carousel_pic.src = `./img/${pic_urlarr[pic_frame]}`;
-        clearInterval(timer);
-        timer = setInterval(pic_switch,2500);
-    }
-}
-pic_switch();
-var timer = setInterval(pic_switch,2500);
+// let pic_frame = 3;
+// let pic_urlarr = ["e.jpg","e2.jpg","e3.jpg","e4.jpg"];
+// let pic_dots = dots.getElementsByClassName("dot");
+// let pic_switch = function(){
+//     if (pic_frame < 3){
+//         pic_frame++;
+//     }
+//     else{
+//         pic_frame = 0;
+//     }
+//     if (pic_frame > 0){
+//         pic_dots[pic_frame-1].className = "dot";
+//         pic_dots[pic_frame].className = "dot dot_selected";
+//     }
+//     else{
+//         pic_dots[3].className = "dot";
+//         pic_dots[0].className = "dot dot_selected";
+//     }
+//     carousel_pic.src = `./img/${pic_urlarr[pic_frame]}`;
+// }
+// for (let i = 0;i < pic_dots.length;i++){
+//     pic_dots[i].onclick = function(){
+//         for (let j = 0;j < pic_dots.length;j++){
+//             pic_dots[j].className = "dot";
+//         }
+//         pic_dots[i].className = "dot dot_selected";
+//         pic_frame = i;
+//         carousel_pic.src = `./img/${pic_urlarr[pic_frame]}`;
+//         clearInterval(timer);
+//         timer = setInterval(pic_switch,2500);
+//     }
+// }
+// pic_switch();
+
 var hot_books = new Vue({
     el:"#hot_container",
     data:{
         hotest:{
-            img_url:"img/e.jpg",
-            bookname:"钢铁是怎样炼成的",
-            author:"奥斯特洛夫斯基",
-            link:"./categories.html"
+            img_url:"http://api.jisuapi.com/isbn/upload/e3/169f585cebac39.jpg",
+            bookname:"计算机网络",
+            author:" (美) 詹姆斯·F. 库罗斯 (James F. Kuro",
+            link:"./bookdetail.html?isbn=9787111599715"
         },
         hot_books:[
             {
                 bookname:"Effective C++",
-                bookid:1
+                isbn:1
             },
             {
                 bookname:"Effective C#",
-                bookid:2
+                isbn:2
             },
             {
                 bookname:"Effective Java",
-                bookid:3
+                isbn:3
             },
             {
                 bookname:"Effective Python",
-                bookid:4
+                isbn:4
             }
         ]
     },
     computed:{
         hot_book_links(){
             let links = [];
-            let search_url = "./categories.html";
+            let search_url = "./bookdetail.html";
             for (let i of this.hot_books){
-                links.push(`${search_url}?bookid=${i.bookid}`);
+                links.push(`${search_url}?isbn=${i.isbn}`);
             }
             return links;
         }
+    },
+    mounted(){
+        let pms = SendJSON("POST",`${serverHost}:8002/bookservice/booksearch/1/5`,{});
+        pms.then((value) => {
+            this.hotest = {
+                img_url:value.data.booklist[0].cover,
+                bookname:value.data.booklist[0].bookName,
+                author:value.data.booklist[0].author,
+                link:`./bookdetail.html?isbn=${value.data.booklist[0].isbn}`
+            }
+            this.hot_books = [];
+            for (let j = 1; j <= 4;j++){
+                let i = value.data.booklist[j];
+                let book = {
+                    isbn:i.isbn,
+                    bookname:i.bookName,
+                };
+                this.hot_books.push(book);
+            }
+        });
     }
 })
 var recommends = new Vue({
     el:"#recommend",
     data:{
-        recommend_books:[
-            {
-                img_url:"img/e.jpg",
-                bookname:"钢铁是怎样炼成的",
-                bookid:0,
-                author:"奥斯特洛夫斯基",
-            },
-            {
-                img_url:"img/e2.jpg",
-                bookname:"Thinking in Java",
-                bookid:1,
-                author:"Bruce Eckel",
-            },
-            {
-                img_url:"img/e3.jpg",
-                bookname:"Hong Lou Meng",
-                bookid:2,
-                author:"Xueqin Cao",
-            },
-            {
-                img_url:"img/e4.jpg",
-                bookname:"宏观经济学",
-                author:"Andrul B Abol",
-                bookid:3,
-            },
-            {
-                img_url:"img/e.jpg",
-                bookname:"钢铁是怎样炼成的",
-                author:"奥斯特洛夫斯基",
-                bookid:4,
-            },
-        ]
+        recommend_books:[{},{},{},{},{}]
     },
     methods:{
 
@@ -139,11 +128,122 @@ var recommends = new Vue({
     computed:{
         recommend_links(){
             let links = [];
-            let search_url = "./categories.html";
+            let search_url = "./bookdetail.html";
             for (let i of this.recommend_books){
-                links.push(`${search_url}?bookid=${i.bookid}`);
+                links.push(`${search_url}?isbn=${i.isbn}`);
             }
             return links;
         }
+    },
+    mounted(){
+        let pms = SendJSON("POST",`${serverHost}:8002/bookservice/booksearch/1/5`,{});
+        pms.then((value) => {
+            this.recommend_books = [];
+            for (let j = 0;j < 5;j++){
+                let i = value.data.booklist[j];
+                let book = {
+                    img_url:i.cover,
+                    isbn:i.isbn,
+                    bookname:i.bookName,
+                    author:i.author,
+                };
+                this.recommend_books.push(book);
+            }
+        });
     }
+});
+
+var usertip = new Vue({
+    el:"#usermessage",
+    data:{
+        usermessage:"",
+    },
+    mounted(){
+        let pms = SendJSON("GET",`${serverHost}:8002/bookservice/getReservationsInfo`,null,token);
+        pms.then((value) => {
+            this.usermessage = value.data.reservationsInfo;
+        });
+    }
+});
+
+var catelist = new Vue({
+    el:".category_list_container",
+    data:{
+        cates:[],
+    },
+    methods:{
+        findCate(index){
+            window.location.href = `./categories.html?cateid=${this.cates[index].categoryId}`;
+        }
+    },
+    mounted(){
+        let pms =  SendJSON("GET",`${serverHost}:8002/bookservice/getbookcategoryinfo`);
+        pms.then((value) => {
+            for (let i = 0;i < Math.min(5,value.data.parentCategories.length);i++){
+                this.cates.push(value.data.parentCategories[i]);
+            }
+        });
+    }
+});
+
+var carousel = new Vue({
+    el:".pic",
+    data:{
+        pointer:0,
+        booklist:[],
+        timer:null,
+    },
+    methods:{
+        change(i){
+            this.pointer = i;
+            clearInterval(this.timer);
+            this.timer = null;
+            this.setTimer();
+        },
+        go(){
+            location.href = `./bookdetail.html?isbn=${this.isbn}`;
+        },
+        setTimer(){
+            this.timer = setInterval(() => {
+                if (this.pointer >= 3){
+                    this.pointer = 0;
+                }
+                else {
+                    this.pointer++;
+                }
+            },2500);
+        }
+    },
+    computed:{
+        img_url(){
+            if (this.booklist.length > 0){
+                return this.booklist[this.pointer].img_url;
+            }
+        },
+        isbn(){
+            if (this.booklist.length > 0){
+                return this.booklist[this.pointer].isbn;
+            }
+        },
+        stylelist(){
+            let arr = ["dot","dot","dot","dot"];
+            arr[this.pointer] = "dot dot_selected";
+            return arr;
+        }
+    },
+    mounted(){
+        let pms = SendJSON("POST",`${serverHost}:8002/bookservice/booksearch/1/4`,{});
+        pms.then((value) => {
+            this.booklist = [];
+            for (let j = 0;j < 4;j++){
+                let i = value.data.booklist[j];
+                let book = {
+                    img_url:i.cover,
+                    isbn:i.isbn,
+                };
+                this.booklist.push(book);
+            }
+        });
+        this.setTimer();
+    },
 });

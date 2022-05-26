@@ -1,0 +1,13 @@
+
+table th:nth-child(1){
+    width: 240px;
+}
+table th:nth-child(2){
+    width:200px;
+}
+table th:nth-child(3){
+    width:260px;
+}
+table th:last-child{
+    width: 210px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main_head.css"> 
+    <link rel="stylesheet" href="./css/categories.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <link rel="stylesheet" href="./css/borrowedbooks.css">
+    <script src="./lib/vue2.js"></script>
+    <script src="./lib/index.js"></script>
+    <script src="./javascript/public.js"></script>
+    <title>My depts</title>
+</head>
+<body style="background-color:#EBEBEB;">
+    <div class="main_container">
+        <div class="table_container">
+            <p>Order records</p>
+            <div class="table_div" style="height: 500px;">
+                <div class="table_info">
+                    <div class="infoms">account: {{uid}}</div>
+                </div>
+                <table>
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <th width="220">order Id</th>
+                        <th>price</th>
+                        <th>createTime</th>
+                        <th>finishTime</th>
+                        <tr v-for="(i,index) in list">
+                            <td>{{i.orderId}}</td>
+                            <td>{{Number(i.price).toFixed(2)}}</td>
+                            <td>{{i.createTime}}</td>
+                            <td>{{i.finishTime}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./javascript/order.js"></script>
+</html>

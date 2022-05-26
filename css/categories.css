@@ -53,6 +53,9 @@ a{
     float: left;
     margin-right: 10px;
 }
+.cate_list li:hover{
+    cursor: pointer;
+}
 .cate_list .selected{
     background-color: #BAB5BD;
     color: white;
@@ -91,12 +94,13 @@ a{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: 27px;
+    font-size: 24px;
 }
 .book_detail_team{
     margin-top: 3px 0px;
     height:35px;
-    font-size: 19px;
+    font-size: 14px;
+    line-height: 35px;
 }
 .book_detail_team p{
     float: left;

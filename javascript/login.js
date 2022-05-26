@@ -9,7 +9,7 @@ var vm = new Vue({
         post(){
             let that = this;
             let post_data = {
-                userName:this.username,
+                userId:this.username,
                 passWord:this.password
             }
             const xhr = new XMLHttpRequest();

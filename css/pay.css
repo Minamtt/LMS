@@ -1,0 +1,81 @@
+#new_payment {
+    height: 500px;
+    width: 1000px;
+    background-color: white;
+    float: middle;
+    margin: 130px auto;
+    border-radius: 10px;
+    color: #666666;
+    padding: 8px;
+  }
+
+  #title_1 {
+    font-size: 22px;
+    margin: 35px 10px 5px 0;
+    float: left;
+    margin-left: 20px;
+  }
+
+  #price {
+    font-size: 22px;
+    margin: 35px 0 5px 0;
+    float: left;
+    color: red;
+  }
+
+  #title_2 {
+    font-size: 22px;
+    margin: 35px 0 5px 0;
+    float: right;
+  }
+
+  #pay_number {
+    font-size: 22px;
+    margin: 35px 0 5px 0;
+    float: right;
+    margin-right: 200px;
+    color: purple;
+  }
+
+  #line {
+    margin-top: 150px;
+  }
+
+  #title_3 {
+    font-size: 22px;
+    margin: 35px 10px 5px 0;
+    float: left;
+    margin-left: 20px;
+  }
+
+  #icon_1 {
+    font-size: 22px;
+    margin: 35px 10px 5px 0;
+    float: left;
+    margin-left: 20px;
+  }
+
+  body {
+    background-color: #FFFFE0;
+  }
+
+  .qrcode-img {
+    border: 2px solid #f4f4f4;
+    padding: 8px;
+    margin-top: 100px;
+    margin-left:420px;
+    margin-right:412px;
+    margin-bottom:10px;
+  }
+  #back{
+    float:right;
+    height:40px;
+    margin-right:20px;
+    width:70px;
+    background-color:#BEBEBE;
+    border-radius: 10px;
+    border:0;
+  }
+  #back:hover{
+      cursor: pointer;
+  }
