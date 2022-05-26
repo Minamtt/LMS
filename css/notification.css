@@ -39,7 +39,7 @@
     font-size: 20px;
 }
 
-.msgs .msg-item>p:not(.tip):hover {
+.msgs .msg-item>p:not(.tip) {
     color: orange;
 }
 

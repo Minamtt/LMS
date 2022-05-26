@@ -15,14 +15,14 @@
         <p class="title">Notifications</p>
         <div class="msgs" v-if="notification.length">
             <div class="msg-item" @click="toBorrowed">
-                <p class="tip">Borrowed books in due:</p>
+                <p class="tip">Notifications of borrowed books:</p>
                 <p v-for="item in borrowDue">{{item.msg}}</p>
-                <p v-if="!borrowDue.length">No borrowed dues</p>
+                <p v-if="!borrowDue.length">No borrowed notifications</p>
             </div>
             <div class="msg-item" @click="toReserved">
-                <p class="tip">Reserved books in due:</p>
+                <p class="tip">Notifications of reserved books:</p>
                 <p v-for="item in reserveDue">{{item.msg}}</p>
-                <p v-if="!reserveDue.length">No reserved dues</p>
+                <p v-if="!reserveDue.length">No reserved notifications</p>
             </div>
             <div class="msg-item" @click="toBorrowed">
                 <p class="tip">Fines to be paid:</p>

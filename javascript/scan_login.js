@@ -10,7 +10,7 @@ new Vue({
         url: 'https://edu6666.oss-cn-beijing.aliyuncs.com/barcode/2022/05/04/7f2ec9b9e5354937b99613ecd9765cf1frx.jpg',
       },
       {
-        name: 'administrator',
+        name: 'librarian',
         url: 'https://edu6666.oss-cn-beijing.aliyuncs.com/barcode/2022/05/23/0ab097d6fe764e8dbfdf8d47b865fb5bwhb.jpg',
       }
     ],
